@@ -1,3 +1,3 @@
 <template>
-  <router-view />
+  <div>error 4o4</div>
 </template>
