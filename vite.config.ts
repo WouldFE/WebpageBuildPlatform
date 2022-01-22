@@ -4,33 +4,28 @@ import Vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
-import Pages from 'vite-plugin-pages'
-import Layouts from 'vite-plugin-vue-layouts'
-import Markdown from 'vite-plugin-md'
 
 const pathResolve = (src: string) => resolve(__dirname, src)
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    Vue({ script: { refSugar: true }, include: [/\.vue$/, /\.md$/] }),
+    Vue({ script: { refSugar: true }, include: [/\.vue$/] }),
     Unocss(),
-    Pages({ extensions: ['vue', 'md'] }),
-    Layouts(),
     AutoImport({
       imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
       dts: 'src/auto-imports.d.ts'
     }),
     Components({
-      extensions: ['vue', 'md'],
-      include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      extensions: ['vue'],
+      include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/components.d.ts'
-    }),
-    Markdown()
+    })
   ],
   resolve: {
     alias: {
       '@': pathResolve('src'),
-      '@a': pathResolve('src/assets')
+      '@a': pathResolve('src/assets'),
+      '@v': pathResolve('src/views')
     }
   },
   optimizeDeps: {

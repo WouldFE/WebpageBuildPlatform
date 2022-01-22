@@ -1,13 +1,26 @@
 {
   "name": "client",
   "version": "0.0.0",
+  "description": "client",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=1111",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
     "lint:fix": "nr lint -- --fix"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WouldFe/client.git"
+  },
+  "keywords": [],
+  "author": "chris-zhu <https://github.com/chris-zhu>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WouldFe/client/issues"
+  },
+  "homepage": "https://github.com/WouldFe/client#readme",
   "dependencies": {
     "@vueuse/core": "^7.5.3",
     "pinia": "^2.0.9",
@@ -25,9 +38,6 @@
     "unplugin-auto-import": "^0.5.11",
     "unplugin-vue-components": "^0.17.11",
     "vite": "^2.7.2",
-    "vite-plugin-md": "^0.11.7",
-    "vite-plugin-pages": "^0.20.0",
-    "vite-plugin-vue-layouts": "^0.5.0",
     "vue-tsc": "^0.29.8"
   }
 }

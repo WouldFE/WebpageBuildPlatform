@@ -1,8 +1,12 @@
+import { createApp } from 'vue'
 import App from './App.vue'
-import { createCtx } from './use'
 import 'uno.css'
 import '@/styles/index.scss'
+import router from './router'
+import pinia from './store'
 
-createCtx(App, (ctx) => {
-  Object.values(import.meta.globEager('./modules/*.ts')).map(i => i.install?.(ctx))
-})
+const app = createApp(App)
+app.use(router)
+app.use(pinia)
+
+app.mount('#app')
