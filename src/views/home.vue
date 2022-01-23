@@ -1,19 +1,63 @@
 <script lang="ts" setup>
-import {} from 'pinia'
-import { useUserStore } from '@/store/user'
+import { generateId } from 'element-plus/lib/utils/util'
+import ToolBar from '@/components/Toolbar.vue'
+import Editor from '@/components/Editor/index.vue'
+import ComponentList from '@/components/ComponentList.vue'
+import CanvasComponentList from '@/components/canvas-component/canvas-component-list'
+import { useCanvasStore } from '@/store/canvas'
+import type { component } from '@/types'
 
-const { name } = storeToRefs(useUserStore())
+const canvasStore = useCanvasStore()
+
+function handleDrop(e: DragEvent) {
+  e.preventDefault()
+  e.stopPropagation()
+  const component = {} as component
+  Object.assign(component, CanvasComponentList[Number((e as any).dataTransfer.getData('index'))])
+  component.style = { ...component.style, top: e.offsetX, left: e.offsetY }
+  component.id = generateId()
+  canvasStore.addComponent(component)
+}
+
+function handleDragOver(e: DragEvent) {
+  e.preventDefault();
+  (e as any).dataTransfer.dropEffect = 'copy'
+}
 </script>
 
 <template>
-  <div>
-    <HelloWorld msg="123" />
-    <p text-center>
-      type change:
-      <input v-model="name">
-      <p>
-       pinia user store name: {{name}}
-      </p>
-    </p>
-  </div>
+  <el-container class="root">
+    <el-header class="header">
+      <ToolBar />
+    </el-header>
+    <el-container class="asideMain">
+      <el-aside width="200px">
+        <ComponentList />
+      </el-aside>
+      <el-main class="main" @drop="handleDrop" @dragover="handleDragOver">
+        <Editor is-edit />
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
+
+<style scoped>
+.root *{
+  padding: 0;
+  margin: 0;
+}
+
+.asideMain {
+  margin-top: 4px;
+}
+
+.main {
+  overflow: hidden;
+}
+
+.header {
+  height: 40px;
+  border-bottom: #ccc 1px solid;
+}
+
+</style>
