@@ -13,8 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@a/*": ["src/assets/*"],
-      "@v/*": ["src/views/*"]
+      "@a/*": ["src/assets/*"]
     },
     "types": ["vite/client", "vite-plugin-pages/client", "vite-plugin-vue-layouts/client"]
   },
