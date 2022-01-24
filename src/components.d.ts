@@ -4,7 +4,11 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ComponentList: typeof import('./components/ComponentList.vue')['default']
+    CText: typeof import('./components/canvas-component/CText.vue')['default']
+    Editor: typeof import('./components/Editor/index.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    Toolbar: typeof import('./components/Toolbar.vue')['default']
   }
 }
 
