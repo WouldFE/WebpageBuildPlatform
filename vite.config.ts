@@ -30,7 +30,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': pathResolve('src'),
-      '@a': pathResolve('src/assets')
+      '@a': pathResolve('src/assets'),
+      '@v': pathResolve('src/views')
     }
   },
   optimizeDeps: {
