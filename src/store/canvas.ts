@@ -1,6 +1,6 @@
 import type { component } from '@/types'
 
-type canvasStore = {
+interface canvasStore {
   canvasSetting: {
     width: number
     height: number
