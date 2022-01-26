@@ -1,12 +1,15 @@
 import type { component } from '@/types'
 
 type canvasStore = {
-  canvasSetting: {}
+  canvasSetting: {
+    width: number
+    height: number
+  }
   editMode: string
   componentData: component[]
 }
 
-export const useCanvasStore = defineStore('canvas', {
+export const useCanvasStore = defineStore<string, canvasStore>('canvas', {
   state: () => {
     return {
       canvasSetting: {
@@ -19,7 +22,6 @@ export const useCanvasStore = defineStore('canvas', {
   },
   actions: {
     addComponent(component: component) {
-      // @ts-ignore
       this.componentData.push(component)
     }
   },

@@ -8,7 +8,7 @@
   >
     <CanvasComponent>
       <div v-for="{item} in componentData" :key="item.id">
-        <!-- @Todo: 这里item 应该也有代码提示或者type类型可以查看      -->
+        {{ item.id }}
       </div>
     </CanvasComponent>
   </div>
