@@ -1,9 +1,1 @@
-import app from '@/main'
-
-const canvasComponentList = [
-  'CText'
-]
-
-canvasComponentList.forEach((key) => {
-  app.component(key, () => import(`@/components/canvas-component/${key}.vue`))
-})
+export { default as CText } from './CText.vue'

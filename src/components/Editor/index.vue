@@ -6,10 +6,8 @@
     :style="canvasStyle"
     @contextmenu.prevent="handleContextMenu"
   >
-    <CanvasComponent>
-      <div v-for="{item} in componentData" :key="item.id">
-        {{ item.id }}
-      </div>
+    <CanvasComponent v-for="item in componentData" :key="item.id">
+      <component :is="item.component" :props="item.propValue" />
     </CanvasComponent>
   </div>
 </template>
@@ -18,12 +16,7 @@
 import { useCanvasStore } from '@/store/canvas'
 import CanvasComponent from './CanvasComponent.vue'
 
-const canvasStore = storeToRefs(useCanvasStore())
-
-const {
-  canvasSetting,
-  componentData
-} = canvasStore
+const { canvasSetting, componentData } = storeToRefs(useCanvasStore())
 
 const canvasStyle = {
   width: `${canvasSetting.value.width}px`,

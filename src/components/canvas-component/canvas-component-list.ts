@@ -1,11 +1,11 @@
 import type { component } from '@/types'
 
-const list: [component] = [
+const list: component[] = [
   {
     id: -1,
     component: 'CText',
     label: '文本',
-    propValue: { text: '文本' },
+    propValue: { text: '请在此处输入文字' },
     icon: '',
     style: {
       width: 200,

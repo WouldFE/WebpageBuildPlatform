@@ -1,5 +1,6 @@
 import ElementPlus from 'element-plus'
 import { createApp } from 'vue'
+import * as canvasComponentList from '@/components/canvas-component'
 import App from './App.vue'
 import 'uno.css'
 import '@/styles/index.scss'
@@ -12,6 +13,8 @@ app.use(router)
 app.use(pinia)
 app.use(ElementPlus)
 
-app.mount('#app')
+// eslint-disable-next-line no-restricted-syntax
+for (const key in canvasComponentList)
+  app.component(key, (canvasComponentList as any)[key])
 
-export default app
+app.mount('#app')
