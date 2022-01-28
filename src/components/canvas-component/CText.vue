@@ -3,27 +3,14 @@
 </template>
 
 <script setup lang="ts">
-// type propsType = {
-//   text: string
-// }
-// defineProps<{props: propsType}>()
-</script>
-
-<script lang="ts">
-import type { PropType } from 'vue'
-
 type propsType = {
   text: string
+  number?: number
 }
 
-export default {
-  props: {
-    props: {
-      type: Object as PropType<propsType>
-    }
-  }
-}
-
+const props = withDefaults(defineProps<propsType>(), {
+  text: 'xxx'
+})
 </script>
 
 <style scoped>

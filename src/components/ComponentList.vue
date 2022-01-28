@@ -3,7 +3,7 @@
     <ElCard
       v-for="(item, index) in componentList"
       :key="index"
-      draggable="true"
+      draggable
       :data-index="index"
       class="component-item"
     >
