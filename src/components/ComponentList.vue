@@ -1,34 +1,26 @@
-<template>
-  <div class="component-list" @dragstart="handleDragStart">
-    <ElCard
-      v-for="(item, index) in componentList"
-      :key="index"
-      draggable
-      :data-index="index"
-      class="component-item"
-    >
-      <span>{{ item.label }}</span>
-    </ElCard>
-  </div>
-</template>
-
 <script setup lang="ts">
-import componentList from '@/components/canvas-component/canvas-component-list'
+import { componentList } from '@/config'
 
 const handleDragStart = (e: DragEvent) => {
   (e as any).dataTransfer.setData('index', (e as any).target.dataset.index)
 }
 </script>
 
-<style scoped lang="scss">
-.component-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 10px;
-  .component-item {
-    width: 45%;
-    text-align: center;
-  }
-}
-</style>
+<template>
+  <div
+    flex
+    flex-wrap
+    justify-around
+    p-10px
+    @dragstart="handleDragStart"
+  >
+    <ElCard
+      v-for="(item, index) in componentList"
+      :key="index"
+      draggable
+      class="w-45% text-center"
+    >
+      <span>{{ item.label }}</span>
+    </ElCard>
+  </div>
+</template>

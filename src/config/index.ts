@@ -1,8 +1,11 @@
+import { deepClone } from '@chris-zhu/utils'
 import type { component } from '@/types'
 
-const list: component[] = [
+const generateId = () => Math.floor(Math.random() * 1e4)
+
+export const componentList: component[] = [
   {
-    id: -1,
+    id: generateId(),
     component: 'CText',
     label: '文本',
     propValue: { text: '请在此处输入文字' },
@@ -22,4 +25,8 @@ const list: component[] = [
   }
 ]
 
-export default list
+export const generateComp = (idx: number): component => {
+  const c = deepClone(componentList[idx]) as component
+  c.id = generateId()
+  return c
+}

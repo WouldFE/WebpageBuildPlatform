@@ -1,28 +1,28 @@
 import type { component } from '@/types'
 
 interface canvasStore {
-  canvasSetting: {
+  config: { // 配置项
     width: number
     height: number
   }
-  editMode: string
-  componentData: component[]
+  mode: 'edit' | 'xxx' // 添加更多模式
+  data: component[] // 组件数据
 }
 
 export const useCanvasStore = defineStore<string, canvasStore>('canvas', {
   state: () => {
     return {
-      canvasSetting: {
+      config: {
         width: 1280,
         height: 720
       },
-      editMode: 'edit',
-      componentData: []
+      mode: 'edit',
+      data: []
     }
   },
   actions: {
     addComponent(component: component) {
-      this.componentData.push(component)
+      this.data.push(component)
     }
   },
   getters: {}
