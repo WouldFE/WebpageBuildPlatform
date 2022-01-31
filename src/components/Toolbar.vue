@@ -5,7 +5,7 @@ const menuList = [
   { id: 'setting', name: '画布设置' }
 ]
 
-const operation = (id) => {
+const operation = (id: string) => {
   // console.log(id)
 }
 </script>

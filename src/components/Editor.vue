@@ -1,8 +1,9 @@
 <template>
+  <!-- todo event name -->
   <div
     :class="isEdit && 'bg-#fc6'"
     :style="{width: `${config.width}px`, height: `${config.height}px`}"
-    @contextmenu.prevent="handleContextMenu"
+    @dragover="handleContextMenu"
   >
     <component :is="item.component" v-for="item in componentData" :key="item.id" :props="item.propValue" />
   </div>
@@ -12,7 +13,7 @@
 import { useCanvasStore } from '@/store/canvas'
 
 withDefaults(defineProps<{
-  isEdit?: Boolean
+  isEdit?: boolean
 }>(), { isEdit: true })
 
 const { config, data: componentData } = storeToRefs(useCanvasStore())
