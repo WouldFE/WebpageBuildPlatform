@@ -17,6 +17,7 @@ const handleDragStart = (e: DragEvent) => {
     <ElCard
       v-for="(item, index) in componentList"
       :key="index"
+      :data-index="index"
       draggable
       class="w-45% text-center"
     >
