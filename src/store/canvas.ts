@@ -9,6 +9,10 @@ interface canvasStore {
   data: component[] // 组件数据
 }
 
+interface canvasAction {
+  addComponent: () => void
+}
+
 export const useCanvasStore = defineStore<string, canvasStore>('canvas', {
   state: () => {
     return {
@@ -24,6 +28,5 @@ export const useCanvasStore = defineStore<string, canvasStore>('canvas', {
     addComponent(component: component) {
       this.data.push(component)
     }
-  },
-  getters: {}
+  }
 })
