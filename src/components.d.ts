@@ -4,11 +4,9 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    CanvasComponent: typeof import('./components/Editor/CanvasComponent.vue')['default']
     ComponentList: typeof import('./components/ComponentList.vue')['default']
-    CText: typeof import('./components/canvas-component/CText.vue')['default']
-    Editor: typeof import('./components/Editor/index.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    CText: typeof import('./components/canvas/CText.vue')['default']
+    Editor: typeof import('./components/Editor.vue')['default']
     Toolbar: typeof import('./components/Toolbar.vue')['default']
   }
 }

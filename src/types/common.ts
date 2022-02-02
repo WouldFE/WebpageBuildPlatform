@@ -11,8 +11,8 @@ export type component = {
   style: {
     width: number
     height: number
-    top: number
-    left: number
+    top: string
+    left: string
     fontSize: number
     fontWeight: number
     lineHeight: string

@@ -1,31 +1,21 @@
+<script setup lang="ts">
+const menuList = [
+  { id: 'save', name: '保存' },
+  { id: 'clear', name: '清空画布' },
+  { id: 'setting', name: '画布设置' }
+]
+
+const operation = (id: string) => {
+  // console.log(id)
+}
+</script>
+
 <template>
-  <div class="menuItemContainer">
-    <div v-for="menuItem in menuItemList" :key="menuItem.id" class="menuItem">
-      <ElButton @click="menuItem.operation">
+  <div border="~ transparent b-#ccc">
+    <div flex items-center px-6 py-2>
+      <el-button v-for="menuItem in menuList" :key="menuItem.id" mr-5 @click="operation(menuItem.id)">
         {{ menuItem.name }}
-      </ElButton>
+      </el-button>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useMenuStore } from '@/store/menu'
-type menuItemListType = [{
-  name: string
-  operation: () => void
-}]
-const { menuItemList } = storeToRefs(useMenuStore())
-
-</script>
-
-<style scoped>
-.menuItemContainer {
-  height: 100%;
-}
-
-.menuItem {
-  height: 100%;
-  display: inline-block;
-  padding: 4px 8px;
-}
-</style>
