@@ -13,15 +13,16 @@ function handleDrop(e: DragEvent) {
   e.preventDefault()
   e.stopPropagation()
   const component = {} as component
-  Object.assign(component, CanvasComponentList[Number((e as any).dataTransfer.getData('index'))])
+  // @Todo: deep copy
+  Object.assign(component, CanvasComponentList[Number(e.dataTransfer?.getData('index'))])
   component.style = { ...component.style, top: e.offsetY, left: e.offsetX }
   component.id = generateId()
+  // @Todo: store.$patch
   canvasStore.addComponent(component)
 }
 
 function handleDragOver(e: DragEvent) {
-  e.preventDefault();
-  (e as any).dataTransfer.dropEffect = 'copy'
+  e.preventDefault()
 }
 </script>
 
