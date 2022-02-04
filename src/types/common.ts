@@ -9,15 +9,16 @@ export type component = {
   propValue: {}
   icon: string
   style: {
-    width: number
-    height: number
+    width: string
+    height: string
     top: string
     left: string
-    fontSize: number
-    fontWeight: number
+    fontSize: string
+    fontWeight: string
     lineHeight: string
-    letterSpacing: number
+    letterSpacing: string
     textAlign: string
     color: string
+    [key: string]: string
   }
 }
