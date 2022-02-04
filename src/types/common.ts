@@ -6,7 +6,9 @@ export type component = {
   id: number
   component: string
   label: string
-  propValue: {}
+  propValue: {
+    [key: string]: string
+  }
   icon: string
   style: {
     width: string

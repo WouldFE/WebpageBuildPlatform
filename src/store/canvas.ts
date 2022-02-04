@@ -1,12 +1,16 @@
 import type { component } from '@/types'
 
 interface canvasStore {
-  config: { // 配置项
+  // 配置项
+  config: {
     width: number
     height: number
+    bgColor: string
   }
-  mode: 'edit' | 'xxx' // 添加更多模式
-  data: component[] // 组件数据
+  // 添加更多模式
+  mode: 'edit' | 'xxx'
+  // 组件数据
+  data: component[]
 }
 
 interface canvasAction {
@@ -19,7 +23,8 @@ export const useCanvasStore = defineStore<string, canvasStore, {}, canvasAction>
       return {
         config: {
           width: 1280,
-          height: 720
+          height: 720,
+          bgColor: '#fc6'
         },
         mode: 'edit',
         data: []
