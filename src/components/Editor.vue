@@ -6,7 +6,7 @@
     class="editor"
     @contextmenu.prevent="handleContextMenu"
   >
-    <div v-for="item in componentData" :key="item.id">
+    <div v-for="item in componentData" :key="item.id" @click="currComp = item">
       <component :is="item.component" :props="item.propValue" :style="{ position: 'absolute', ...item.style}" />
     </div>
   </div>
@@ -21,7 +21,8 @@ withDefaults(defineProps<{
 
 const {
   config,
-  data: componentData
+  data: componentData,
+  currComp
 } = storeToRefs(useCanvasStore())
 
 const handleContextMenu = (e: DragEvent) => {

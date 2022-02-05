@@ -11,6 +11,7 @@ interface canvasStore {
   mode: 'edit' | 'xxx'
   // 组件数据
   data: component[]
+  currComp: component | undefined
 }
 
 interface canvasAction {
@@ -27,7 +28,8 @@ export const useCanvasStore = defineStore<string, canvasStore, {}, canvasAction>
           bgColor: '#fc6'
         },
         mode: 'edit',
-        data: []
+        data: [],
+        currComp: undefined
       }
     },
     actions: {

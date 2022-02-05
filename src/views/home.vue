@@ -1,19 +1,28 @@
 <script lang="ts" setup>
-import SideBar from '@/components/SideBar.vue'
+import AttrBar from '@/components/AttrBar.vue'
 import { generateComp } from '@/config'
 import { useCanvasStore } from '@/store/canvas'
 
 const canvasStore = useCanvasStore()
-
+const { mode } = storeToRefs(canvasStore)
 function handleDrop(e: DragEvent) {
   const component = generateComp(Number(e.dataTransfer?.getData('index')))
-  component.style = { ...component.style, top: `${e.offsetY}px`, left: `${e.offsetX}px` }
+  component.style = {
+    ...component.style,
+    top: `${e.offsetY}px`,
+    left: `${e.offsetX}px`
+  }
   canvasStore.addComponent(component)
 }
 
 function handleDragOver(e: DragEvent) {
   (e as any).dataTransfer.dropEffect = 'copy'
 }
+
+const calcHeight = {
+  height: `${document.documentElement.clientHeight - 50}px`
+}
+
 </script>
 
 <template>
@@ -21,15 +30,15 @@ function handleDragOver(e: DragEvent) {
     <el-header class="!h-fit !p-0">
       <Toolbar />
     </el-header>
-    <el-container>
+    <el-container :style="calcHeight">
       <el-aside width="200px">
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
-        <Editor :is-edit="true" />
+        <Editor :is-edit="mode" />
       </el-main>
-      <el-aside width="350px" style="background-color: #6cf;">
-        <SideBar />
+      <el-aside>
+        <AttrBar />
       </el-aside>
     </el-container>
   </el-container>

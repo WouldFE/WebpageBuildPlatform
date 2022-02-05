@@ -4,10 +4,10 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AttrBar: typeof import('./components/AttrBar.vue')['default']
     ComponentList: typeof import('./components/ComponentList.vue')['default']
     CText: typeof import('./components/canvas/CText.vue')['default']
     Editor: typeof import('./components/Editor.vue')['default']
-    SideBar: typeof import('./components/SideBar.vue')['default']
     Toolbar: typeof import('./components/Toolbar.vue')['default']
   }
 }

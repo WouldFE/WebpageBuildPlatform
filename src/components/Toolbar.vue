@@ -23,10 +23,11 @@ const menuList = [
   }
 ]
 const settingModal = ref(false)
-const { config, data } = storeToRefs(useCanvasStore())
+const { config, data, currComp } = storeToRefs(useCanvasStore())
 const operation = (id: menuID) => {
   if (id === menuID.clear) {
     data.value = []
+    currComp.value = undefined
   } else if (id === menuID.save) {
     // Todo: save
     ElMessage({
