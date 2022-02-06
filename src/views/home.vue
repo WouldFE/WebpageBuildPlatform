@@ -4,7 +4,7 @@ import { generateComp } from '@/config'
 import { useCanvasStore } from '@/store/canvas'
 
 const canvasStore = useCanvasStore()
-const { mode } = storeToRefs(canvasStore)
+const { mode, currComp } = storeToRefs(canvasStore)
 function handleDrop(e: DragEvent) {
   const component = generateComp(Number(e.dataTransfer?.getData('index')))
   component.style = {
@@ -37,7 +37,7 @@ const calcHeight = {
       <el-main overflow-hidden @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
         <Editor :is-edit="mode" />
       </el-main>
-      <el-aside>
+      <el-aside v-if="currComp !== undefined">
         <AttrBar />
       </el-aside>
     </el-container>

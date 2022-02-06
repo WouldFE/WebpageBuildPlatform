@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currComp !== undefined" class="root">
+  <div class="root">
     <div class="close-icon" @click="currComp = undefined">
       <svg class="icon" height="30" viewBox="0 0 1024 1024" width="30" xmlns="http://www.w3.org/2000/svg">
         <path
