@@ -38,3 +38,22 @@ export const useCanvasStore = defineStore<string, canvasStore, {}, canvasAction>
       }
     }
   })
+
+// export const useCanvasStore = defineStore('canvas', () => {
+//   const config = reactive({
+//     width: 1280,
+//     height: 720,
+//     bgColor: '#fc6'
+//   })
+//   const data = reactive<component[]>([])
+//   const mode = ref('edit')
+//   const currComp = ref()
+
+//   const addComponent = (component: component) => {
+//     data.push(component)
+//   }
+
+//   return {
+//     config, data, mode, currComp, addComponent
+//   }
+// })

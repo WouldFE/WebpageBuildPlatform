@@ -1,17 +1,3 @@
-<template>
-  <!-- todo event name -->
-  <div
-    :class="isEdit"
-    :style="{width: `${config.width}px`, height: `${config.height}px`, backgroundColor: `${config.bgColor}`}"
-    class="editor"
-    @contextmenu.prevent="handleContextMenu"
-  >
-    <div v-for="item in componentData" :key="item.id" @click="currComp = item">
-      <component :is="item.component" :props="item.propValue" :style="{ position: 'absolute', ...item.style}" />
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { useCanvasStore } from '@/store/canvas'
 
@@ -31,10 +17,17 @@ const handleContextMenu = (e: DragEvent) => {
 
 </script>
 
-<style scoped>
-.editor {
-  position: relative;
-  overflow: hidden;
-}
-
-</style>
+<template>
+  <!-- todo event name -->
+  <div
+    :class="isEdit"
+    :style="{width: `${config.width}px`, height: `${config.height}px`, backgroundColor: `${config.bgColor}`}"
+    relative
+    overflow-hidden
+    @contextmenu.prevent="handleContextMenu"
+  >
+    <div v-for="item in componentData" :key="item.id" @click="currComp = item">
+      <component :is="item.component" :props="item.propValue" :style="{ position: 'absolute', ...item.style}" />
+    </div>
+  </div>
+</template>

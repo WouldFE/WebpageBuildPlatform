@@ -1,23 +1,20 @@
-<template>
-  <!--  Fixme v-model error -->
-  <ElInput v-if="mode === 'edit'" v-model="props.text" resize="none" type="textarea" :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none'}" />
-  <div v-else>
-    <div v-for="(text, index) in props.text.split('\n')" :key="index">
-      {{ text }}
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { useCanvasStore } from '@/store/canvas'
 
-const { mode } = storeToRefs(useCanvasStore())
 type propsType = {
   text: string
 }
-defineProps<{ props: propsType }>()
+
+const { mode } = storeToRefs(useCanvasStore())
+defineProps<propsType>()
 </script>
 
-<style scoped>
-
-</style>
+<template>
+  <!--  Fixme v-model error -->
+  <ElInput v-if="mode === 'edit'" v-model:value="text" resize="none" type="textarea" :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none'}" />
+  <div v-else>
+    <div v-for="(val, index) in text.split('\n')" :key="index">
+      {{ val }}
+    </div>
+  </div>
+</template>
