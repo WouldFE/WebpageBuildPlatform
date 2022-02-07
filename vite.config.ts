@@ -9,7 +9,7 @@ import Layouts from 'vite-plugin-vue-layouts'
 import Markdown from 'vite-plugin-md'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-const pathResolve = (src: string) => resolve(__dirname, src)
+const r = (src: string) => resolve(__dirname, src)
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -32,9 +32,9 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': pathResolve('src'),
-      '@a': pathResolve('src/assets'),
-      '@v': pathResolve('src/views')
+      '@': r('src'),
+      '@a': r('src/assets'),
+      '@v': r('src/views')
     }
   },
   optimizeDeps: {
