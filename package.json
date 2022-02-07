@@ -30,7 +30,7 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
-    "@chris-zhu/eslint-config": "^0.0.4",
+    "@chris-zhu/eslint-config": "^0.0.5",
     "@iconify-json/carbon": "^1.0.4",
     "@types/node": "^17.0.10",
     "@vitejs/plugin-vue": "^2.0.0",
