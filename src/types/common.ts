@@ -7,7 +7,7 @@ export interface component {
   component: string
   label: string
   propValue: {
-    [key: string]: string
+    [key: string]: prop
   }
   icon: string
   style: compStyle
@@ -25,4 +25,9 @@ export interface compStyle {
   textAlign: string
   color: string
   [key: string]: string | number
+}
+
+export interface prop {
+  display: string
+  value: string
 }

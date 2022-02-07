@@ -35,8 +35,8 @@ const containerStyle = computed(() => ({
       <el-aside width="200px">
         <ComponentList />
       </el-aside>
-      <el-main overflow-hidden @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
-        <Editor />
+      <el-main overflow-hidden>
+        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" />
       </el-main>
       <el-aside v-if="currComp !== undefined">
         <AttrBar />

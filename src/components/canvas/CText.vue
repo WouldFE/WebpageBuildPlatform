@@ -1,19 +1,30 @@
 <script setup lang="ts">
 import { useCanvasStore } from '@/store/canvas'
+import type { prop } from '@/types'
 
 type propsType = {
-  text: string
+  props: {
+    text: prop
+  }
 }
 
 const { mode } = storeToRefs(useCanvasStore())
-defineProps<{props: propsType}>()
+const props = defineProps<propsType>()
+
+const text = computed({
+  get: () => {
+    return props.props.text.value
+  },
+  set: (val) => {
+    props.props.text.value = val
+  }
+})
 </script>
 
 <template>
-  <!--  Fixme v-model error -->
   <ElInput
     v-if="mode === 'edit'"
-    v-model="props.text"
+    v-model="text"
     overflow-hidden
     resize="none"
     type="textarea"
