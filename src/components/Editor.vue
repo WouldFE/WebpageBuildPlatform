@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Shape from '@/components/Shape.vue'
 import { useCanvasStore } from '@/store/canvas'
 
 withDefaults(defineProps<{
@@ -26,8 +27,8 @@ const style = computed(() => ({
     overflow-hidden
     :style="style"
   >
-    <div v-for="item in componentData" :key="item.id" @click="currComp = item">
+    <Shape v-for="item in componentData" :key="item.id" :element="item">
       <component :is="item.component" :props="item.propValue" :style="{ position: 'absolute', ...item.style}" />
-    </div>
+    </Shape>
   </div>
 </template>

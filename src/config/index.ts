@@ -8,11 +8,11 @@ export const componentList: component[] = [
     id: generateId(),
     component: 'CText',
     label: '文本',
-    propValue: { text: '请在此处输入文字' },
+    propValue: { text: '点击此处输入文字' },
     icon: '',
     style: {
       width: '200px',
-      height: '200px',
+      height: '0',
       top: '0px',
       left: '0px',
       fontSize: '14px',

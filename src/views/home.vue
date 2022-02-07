@@ -20,9 +20,9 @@ function handleDragOver(e: DragEvent) {
   (e as any).dataTransfer.dropEffect = 'copy'
 }
 
-const calcHeight = {
+const containerStyle = computed(() => ({
   height: `${document.documentElement.clientHeight - 50}px`
-}
+}))
 
 </script>
 
@@ -31,7 +31,7 @@ const calcHeight = {
     <el-header class="!h-fit !p-0">
       <Toolbar />
     </el-header>
-    <el-container :style="calcHeight">
+    <el-container :style="containerStyle">
       <el-aside width="200px">
         <ComponentList />
       </el-aside>

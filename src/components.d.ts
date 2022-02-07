@@ -8,6 +8,7 @@ declare module 'vue' {
     ComponentList: typeof import('./components/ComponentList.vue')['default']
     CText: typeof import('./components/canvas/CText.vue')['default']
     Editor: typeof import('./components/Editor.vue')['default']
+    Shape: typeof import('./components/Shape.vue')['default']
     Toolbar: typeof import('./components/Toolbar.vue')['default']
   }
 }
