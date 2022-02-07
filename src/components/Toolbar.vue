@@ -39,45 +39,50 @@ const operation = (id: menuID) => {
 
 <template>
   <div border="~ transparent b-#ccc">
-    <div flex items-center px-6 py-2>
-      <el-button v-for="menuItem in menuList" :key="menuItem.id" mr-5 @click="operation(menuItem.id)">
-        {{ menuItem.name }}
-      </el-button>
-      <el-dialog v-model="settingModal" :modal="false" width="30%">
-        <template #title>
-          <div>画布设置</div>
-        </template>
-        <template #default>
-          <el-form label-position="top" label-width="120px">
-            <el-form-item label="画布尺寸">
-              <div class="s-container">
-                <el-input v-model="config.width" class="setting-item" placeholder="宽度" />
-                <span>&times;</span>
-                <el-input v-model="config.height" class="setting-item" placeholder="高度" />
-              </div>
-            </el-form-item>
-            <el-form-item label="画布背景色">
-              <div class="s-container">
-                <el-input v-model="config.bgColor" class="setting-item" />
-                <el-color-picker v-model="config.bgColor" />
-                <div class="setting-item" />
-              </div>
-            </el-form-item>
-          </el-form>
-        </template>
-      </el-dialog>
+    <div flex justify-between items-center px-6 py-2>
+      <div>
+        <el-button v-for="menuItem in menuList" :key="menuItem.id" mr-5 @click="operation(menuItem.id)">
+          {{ menuItem.name }}
+        </el-button>
+      </div>
+      <div>
+        <a
+          title="项目地址"
+          cursor-pointer
+          text-black-500
+          class="hover:text-[#409EFF]"
+          href="https://github.com/WouldFe/client"
+          target="_blank"
+        >
+          <div
+            text-xl
+            class="i-carbon:logo-github"
+          />
+        </a>
+      </div>
     </div>
   </div>
+  <el-dialog v-model="settingModal" :modal="false" width="30%">
+    <template #title>
+      <div>画布设置</div>
+    </template>
+    <template #default>
+      <el-form label-position="top" label-width="120px">
+        <el-form-item label="画布尺寸">
+          <div w-full inline-flex justify-between>
+            <el-input v-model="config.width" class="w-45%" placeholder="宽度" />
+            <span>&times;</span>
+            <el-input v-model="config.height" class="w-45%" placeholder="高度" />
+          </div>
+        </el-form-item>
+        <el-form-item label="画布背景色">
+          <div w-full inline-flex justify-between>
+            <el-input v-model="config.bgColor" class="w-45%" />
+            <el-color-picker v-model="config.bgColor" />
+            <div class="w-45%" />
+          </div>
+        </el-form-item>
+      </el-form>
+    </template>
+  </el-dialog>
 </template>
-
-<style scoped>
-.s-container {
-  width: 100%;
-  display: inline-flex;
-  justify-content: space-between;
-}
-
-.setting-item {
-  width: 45%;
-}
-</style>

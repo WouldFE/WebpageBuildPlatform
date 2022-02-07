@@ -1,8 +1,13 @@
-import { defineConfig, presetAttributify, presetUno } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
   presets: [
     presetAttributify(),
-    presetUno()
+    presetUno(),
+    presetIcons({
+      collections: {
+        logos: () => import('@iconify-json/carbon/icons.json').then(i => i.default as any)
+      }
+    })
   ]
 })
