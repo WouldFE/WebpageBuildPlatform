@@ -5,8 +5,8 @@ const show = ref(true)
 const { currComp } = storeToRefs(useCanvasStore())
 const keydownEsc = new Event('escDown', { bubbles: false })
 
-document.addEventListener('escDown', () => currComp.value = undefined)
-document.addEventListener('keydown', (e: KeyboardEvent) => {
+useEventListener(document, 'escDown', () => currComp.value = undefined)
+useEventListener(document, 'keydown', (e) => {
   e.stopPropagation()
   if (e.key === 'Escape') document.dispatchEvent(keydownEsc)
 })

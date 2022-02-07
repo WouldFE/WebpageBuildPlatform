@@ -2,7 +2,7 @@ import type { App } from 'vue'
 
 export type UserModule = (ctx: App) => void
 
-export type component = {
+export interface component {
   id: number
   component: string
   label: string
@@ -10,17 +10,19 @@ export type component = {
     [key: string]: string
   }
   icon: string
-  style: {
-    width: string
-    height: string
-    top: string
-    left: string
-    fontSize: string
-    fontWeight: string
-    lineHeight: string
-    letterSpacing: string
-    textAlign: string
-    color: string
-    [key: string]: string
-  }
+  style: compStyle
+}
+
+export interface compStyle {
+  width: number
+  height: number
+  top: number
+  left: number
+  fontSize: number
+  fontWeight: number
+  lineHeight: number
+  letterSpacing: number
+  textAlign: string
+  color: string
+  [key: string]: string | number
 }

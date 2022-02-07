@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import Shape from '@/components/Shape.vue'
 import { useCanvasStore } from '@/store/canvas'
+import type { compStyle } from '@/types'
 
 withDefaults(defineProps<{
   isEdit?: boolean
@@ -18,6 +19,14 @@ const style = computed(() => ({
   backgroundColor: `${config.value.bgColor}`
 }))
 
+const getComponentStyle = (style: compStyle) => {
+  const result: {[key: string]: string} = {}
+  Object.keys(style).forEach((value) => {
+    if (typeof style[value] === 'number') result[value] = `${style[value]}px`
+    else result[value] = style[value] as string
+  })
+  return result
+}
 </script>
 
 <template>
@@ -27,8 +36,8 @@ const style = computed(() => ({
     overflow-hidden
     :style="style"
   >
-    <Shape v-for="item in componentData" :key="item.id" :element="item">
-      <component :is="item.component" :props="item.propValue" :style="{ position: 'absolute', ...item.style}" />
+    <Shape v-for="item in componentData" :key="item.id" :element="item" h-0>
+      <component :is="item.component" :props="item.propValue" :style="{position: 'absolute' , ...getComponentStyle(item.style)}" />
     </Shape>
   </div>
 </template>

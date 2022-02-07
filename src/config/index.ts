@@ -11,14 +11,14 @@ export const componentList: component[] = [
     propValue: { text: '点击此处输入文字' },
     icon: '',
     style: {
-      width: '200px',
-      height: '0',
-      top: '0px',
-      left: '0px',
-      fontSize: '14px',
-      fontWeight: '500px',
-      lineHeight: '',
-      letterSpacing: '0px',
+      width: 200,
+      height: 0,
+      top: 0,
+      left: 0,
+      fontSize: 14,
+      fontWeight: 500,
+      lineHeight: 14,
+      letterSpacing: 0,
       textAlign: '',
       color: ''
     }

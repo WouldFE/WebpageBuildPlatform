@@ -10,8 +10,8 @@ function handleDrop(e: DragEvent) {
   const component = generateComp(Number(e.dataTransfer?.getData('index')))
   component.style = {
     ...component.style,
-    top: `${e.offsetY}px`,
-    left: `${e.offsetX}px`
+    top: e.offsetY,
+    left: e.offsetX
   }
   canvasStore.addComponent(component)
 }
