@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/WouldFe/client#readme",
   "dependencies": {
-    "@chris-zhu/utils": "^0.0.6",
+    "@chris-zhu/utils": "^0.0.7",
     "@vueuse/core": "^7.5.3",
     "element-plus": "^2.0.0",
     "pinia": "^2.0.9",
