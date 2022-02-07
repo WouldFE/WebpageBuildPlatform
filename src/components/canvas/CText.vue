@@ -2,7 +2,9 @@
 import { useCanvasStore } from '@/store/canvas'
 
 type propsType = {
-  text: string
+  props: {
+    text: string
+  }
 }
 
 const { mode } = storeToRefs(useCanvasStore())
@@ -11,10 +13,8 @@ defineProps<propsType>()
 
 <template>
   <!--  Fixme v-model error -->
-  <ElInput v-if="mode === 'edit'" v-model:value="text" resize="none" type="textarea" :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none'}" />
-  <div v-else>
-    <div v-for="(val, index) in text.split('\n')" :key="index">
-      {{ val }}
-    </div>
+  <ElInput v-if="mode === 'edit'" v-model:value="props.text" resize="none" type="textarea" :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none'}" />
+  <div v-for="(val, index) in props.text.split('\n')" v-else :key="index">
+    {{ val }}
   </div>
 </template>

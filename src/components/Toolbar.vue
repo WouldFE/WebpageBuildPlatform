@@ -30,10 +30,7 @@ const operation = (id: menuID) => {
     currComp.value = undefined
   } else if (id === menuID.save) {
     // Todo: save
-    ElMessage({
-      type: 'success',
-      message: '保存成功！'
-    })
+    ElMessage.success('保存成功！')
   } else if (id === menuID.setting) {
     settingModal.value = true
   }
