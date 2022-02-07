@@ -15,7 +15,18 @@
       "@/*": ["src/*"],
       "@a/*": ["src/assets/*"]
     },
-    "types": ["vite/client", "vite-plugin-pages/client", "vite-plugin-vue-layouts/client"]
+    "types": [
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client",
+      "element-plus/global"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "unocss.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "unocss.config.ts"
+  ]
 }

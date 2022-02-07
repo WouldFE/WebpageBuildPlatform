@@ -7,6 +7,7 @@ import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import Markdown from 'vite-plugin-md'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 const pathResolve = (src: string) => resolve(__dirname, src)
 // https://vitejs.dev/config/
@@ -18,12 +19,14 @@ export default defineConfig({
     Layouts(),
     AutoImport({
       imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
-      dts: 'src/auto-imports.d.ts'
+      dts: 'src/auto-imports.d.ts',
+      resolvers: [ElementPlusResolver()]
     }),
     Components({
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      dts: 'src/components.d.ts'
+      dts: 'src/components.d.ts',
+      resolvers: [ElementPlusResolver()]
     }),
     Markdown()
   ],
