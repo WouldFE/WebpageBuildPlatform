@@ -13,3 +13,6 @@ declare module '*.md' {
   const component: ComponentOptions
   export default component
 }
+
+// todo: 还需要处理一下吗？ 这里是 unocss.config.ts 的报错
+declare module '*.json' {}
