@@ -8,7 +8,7 @@ interface canvasStore {
     bgColor: string
   }
   // 添加更多模式
-  mode: 'edit' | 'xxx'
+  mode: 'edit' | 'view'
   // 组件数据
   data: component[]
   currComp: component | undefined

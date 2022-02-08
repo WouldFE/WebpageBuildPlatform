@@ -1,19 +1,35 @@
 <script setup lang="ts">
 import { useCanvasStore } from '@/store/canvas'
+import type { prop } from '@/types'
 
 type propsType = {
   props: {
-    text: string
+    text: prop
   }
 }
 
 const { mode } = storeToRefs(useCanvasStore())
-defineProps<propsType>()
+const props = defineProps<propsType>()
+
+const text = computed({
+  get: () => {
+    return props.props.text.value
+  },
+  set: (val) => {
+    props.props.text.value = val
+  }
+})
 </script>
 
 <template>
-  <!--  Fixme v-model error -->
-  <ElInput v-if="mode === 'edit'" v-model:value="props.text" resize="none" type="textarea" :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none'}" />
+  <ElInput
+    v-if="mode === 'edit'"
+    v-model="text"
+    overflow-hidden
+    resize="none"
+    type="textarea"
+    :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none'}"
+  />
   <div v-for="(val, index) in props.text.split('\n')" v-else :key="index">
     {{ val }}
   </div>

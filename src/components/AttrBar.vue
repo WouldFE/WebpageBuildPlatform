@@ -5,8 +5,8 @@ const show = ref(true)
 const { currComp } = storeToRefs(useCanvasStore())
 const keydownEsc = new Event('escDown', { bubbles: false })
 
-document.addEventListener('escDown', () => currComp.value = undefined)
-document.addEventListener('keydown', (e: KeyboardEvent) => {
+useEventListener(document, 'escDown', () => currComp.value = undefined)
+useEventListener(document, 'keydown', (e) => {
   e.stopPropagation()
   if (e.key === 'Escape') document.dispatchEvent(keydownEsc)
 })
@@ -22,8 +22,19 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
         />
       </svg>
     </div>
-    <el-card class="h-full rounded-0 b-t-0" header="组件属性" shadow="never">
-      <div> {{ currComp.propValue }}</div>
+    <el-card class="h-full rounded-0 b-t-0" header="组件设置" shadow="never">
+      <!--      <div> {{ currComp.propValue }}</div>-->
+      <h5>组件属性</h5>
+      <div v-for="(val, key, index) in currComp.propValue" :key="index">
+        <el-form label-position="top" @submit.prevent.stop>
+          <el-form-item :label="val.display">
+            <el-input v-model="val.value" :type="key === 'text' ? 'textarea': ''" />
+          </el-form-item>
+        </el-form>
+      </div>
+      <el-divider />
+      <h5>组件样式</h5>
+      <!-- todo -->
       <div> {{ currComp.style }}</div>
     </el-card>
   </div>
@@ -37,7 +48,7 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   .close-icon {
     position: absolute;
     right: 5%;
-    top: 6%;
+    top: 14px;
     cursor: pointer;
   }
 }

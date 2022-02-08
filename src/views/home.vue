@@ -10,8 +10,8 @@ function handleDrop(e: DragEvent) {
   const component = generateComp(Number(e.dataTransfer?.getData('index')))
   component.style = {
     ...component.style,
-    top: `${e.offsetY}px`,
-    left: `${e.offsetX}px`
+    top: e.offsetY,
+    left: e.offsetX
   }
   canvasStore.addComponent(component)
 }
@@ -20,9 +20,9 @@ function handleDragOver(e: DragEvent) {
   (e as any).dataTransfer.dropEffect = 'copy'
 }
 
-const calcHeight = {
+const containerStyle = computed(() => ({
   height: `${document.documentElement.clientHeight - 50}px`
-}
+}))
 
 </script>
 
@@ -31,12 +31,12 @@ const calcHeight = {
     <el-header class="!h-fit !p-0">
       <Toolbar />
     </el-header>
-    <el-container :style="calcHeight">
+    <el-container :style="containerStyle">
       <el-aside width="200px">
         <ComponentList />
       </el-aside>
-      <el-main overflow-hidden @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
-        <Editor />
+      <el-main overflow-hidden>
+        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" />
       </el-main>
       <el-aside v-if="currComp !== undefined">
         <AttrBar />
