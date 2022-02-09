@@ -18,14 +18,14 @@ export interface compStyle {
   height: number
   top: number
   left: number
-  fontSize: number
-  fontWeight: number
-  lineHeight: number
-  letterSpacing: number
-  textAlign: string
   color: string
   backgroundColor: string
-  [key: string]: string | number
+  fontSize?: number
+  fontWeight?: number
+  lineHeight?: number
+  letterSpacing?: number
+  textAlign?: string
+  [key: string]: string | number | undefined
 }
 
 export interface prop {

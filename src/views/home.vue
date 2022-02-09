@@ -24,6 +24,10 @@ const containerStyle = computed(() => ({
   height: `${document.documentElement.clientHeight - 50}px`
 }))
 
+const handleClick = () => {
+  canvasStore.contextmenu.show = false
+}
+
 </script>
 
 <template>
@@ -36,7 +40,7 @@ const containerStyle = computed(() => ({
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden>
-        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" />
+        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" @click.stop.prevent="handleClick" />
       </el-main>
       <el-aside v-if="currComp !== undefined">
         <AttrBar />

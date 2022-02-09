@@ -23,11 +23,15 @@ const menuList = [
   }
 ]
 const settingModal = ref(false)
-const { config, data, currComp } = storeToRefs(useCanvasStore())
+const canvasStore = useCanvasStore()
 const operation = (id: menuID) => {
   if (id === menuID.clear) {
-    data.value = []
-    currComp.value = undefined
+    canvasStore.$patch({
+      data: [],
+      currComp: undefined,
+      currCompIndex: -1,
+      contextmenu: { show: false }
+    })
   } else if (id === menuID.save) {
     // Todo: save
     ElMessage.success('保存成功！')

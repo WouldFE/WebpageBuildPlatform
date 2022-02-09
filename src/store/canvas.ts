@@ -12,6 +12,12 @@ interface canvasStore {
   // 组件数据
   data: component[]
   currComp: component | undefined
+  currCompIndex: number
+  contextmenu: {
+    show: boolean
+    top: number
+    left: number
+  }
 }
 
 interface canvasAction {
@@ -29,7 +35,13 @@ export const useCanvasStore = defineStore<string, canvasStore, {}, canvasAction>
         },
         mode: 'edit',
         data: [],
-        currComp: undefined
+        currComp: undefined,
+        currCompIndex: -1,
+        contextmenu: {
+          show: false,
+          top: 0,
+          left: 0
+        }
       }
     },
     actions: {

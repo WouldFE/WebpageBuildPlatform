@@ -38,11 +38,6 @@ export const componentList: component[] = [
       height: 600,
       top: 0,
       left: 0,
-      fontSize: 14,
-      fontWeight: 500,
-      lineHeight: 14,
-      letterSpacing: 0,
-      textAlign: 'left',
       color: '#000',
       backgroundColor: 'rgba(0,0,0,0)'
     }

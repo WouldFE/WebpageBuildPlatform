@@ -1,20 +1,40 @@
 <template>
-  <div class="shape" @mousedown.stop="handleMouseDownOnShape" @click="currComp = element">
+  <div
+    class="shape"
+    @click.stop="handleClick"
+    @mousedown.stop="handleMouseDownOnShape"
+    @contextmenu.prevent.stop="handleContextmenu"
+  >
     <slot />
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { useCanvasStore } from '@/store/canvas'
 import type { component } from '@/types'
 
-const { currComp } = storeToRefs(useCanvasStore())
+const canvasStore = useCanvasStore()
+const {
+  currComp,
+  contextmenu
+} = storeToRefs(canvasStore)
 
-const props = defineProps<{element: component}>()
+const props = defineProps<{
+  element: component
+  index: number
+}>()
+
+const handleClick = () => {
+  canvasStore.$patch({
+    currComp: props.element,
+    currCompIndex: props.index
+  })
+  contextmenu.value.show = false
+}
 
 const handleMouseDownOnShape = (e: MouseEvent) => {
-  currComp.value = props.element
-  const comp = currComp.value
+  handleClick()
+  const comp = currComp.value as component
   const startY = e.clientY
   const startX = e.clientX
   const startTop = comp.style.top
@@ -34,5 +54,11 @@ const handleMouseDownOnShape = (e: MouseEvent) => {
 
   useEventListener(document, 'mousemove', move)
   useEventListener(document, 'mouseup', up)
+}
+
+const handleContextmenu = (e: MouseEvent) => {
+  contextmenu.value.left = e.clientX - e.offsetX
+  contextmenu.value.top = e.clientY - 2 * e.offsetY
+  contextmenu.value.show = true
 }
 </script>

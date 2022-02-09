@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Contextmenu from '@/components/Contextmenu.vue'
 import Shape from '@/components/Shape.vue'
 import { useCanvasStore } from '@/store/canvas'
 import type { compStyle } from '@/types'
@@ -35,9 +36,11 @@ const getComponentStyle = (style: compStyle) => {
     relative
     overflow-hidden
     :style="style"
+    @contextmenu.prevent.stop
   >
-    <Shape v-for="item in componentData" :key="item.id" :element="item" h-0>
+    <Shape v-for="(item, index) in componentData" :key="item.id" :element="item" h-0 :index="index">
       <component :is="item.component" :cstyle="item.style" :props="item.propValue" :style="{position: 'absolute' , ...getComponentStyle(item.style)}" />
     </Shape>
+    <Contextmenu />
   </div>
 </template>
