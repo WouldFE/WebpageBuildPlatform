@@ -54,10 +54,7 @@ const operation = (id: menuID) => {
           href="https://github.com/WouldFe/client"
           target="_blank"
         >
-          <div
-            text-xl
-            class="i-carbon:logo-github"
-          />
+          <span class="iconify text-xl" data-icon="carbon:logo-github" />
         </a>
       </div>
     </div>

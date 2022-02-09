@@ -5,6 +5,7 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AttrBar: typeof import('./components/AttrBar.vue')['default']
+    CLayout: typeof import('./components/canvas/CLayout.vue')['default']
     ComponentList: typeof import('./components/ComponentList.vue')['default']
     CText: typeof import('./components/canvas/CText.vue')['default']
     Editor: typeof import('./components/Editor.vue')['default']
