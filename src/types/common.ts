@@ -24,6 +24,7 @@ export interface compStyle {
   letterSpacing: number
   textAlign: string
   color: string
+  backgroundColor: string
   [key: string]: string | number
 }
 

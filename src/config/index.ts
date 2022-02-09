@@ -19,8 +19,9 @@ export const componentList: component[] = [
       fontWeight: 500,
       lineHeight: 14,
       letterSpacing: 0,
-      textAlign: '',
-      color: ''
+      textAlign: 'left',
+      color: '#000',
+      backgroundColor: 'rgba(0,0,0,0)'
     }
   }
 ]
