@@ -26,6 +26,11 @@ const containerStyle = computed(() => ({
 
 const handleClick = () => {
   canvasStore.contextmenu.show = false
+  canvasStore.$patch({
+    contextmenu: { show: false },
+    currComp: undefined,
+    currCompIndex: -1
+  })
 }
 
 </script>

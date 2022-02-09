@@ -58,7 +58,7 @@ const handleMouseDownOnShape = (e: MouseEvent) => {
 
 const handleContextmenu = (e: MouseEvent) => {
   contextmenu.value.left = e.clientX - e.offsetX
-  contextmenu.value.top = e.clientY - 2 * e.offsetY
+  contextmenu.value.top = e.clientY - e.offsetY
   contextmenu.value.show = true
 }
 </script>
