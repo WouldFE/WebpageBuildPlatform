@@ -43,8 +43,8 @@ const handleMouseDownOnShape = (e: MouseEvent) => {
   const move = (e: MouseEvent) => {
     const currY = e.clientY
     const currX = e.clientX
-    comp.style.top = currY - startY + startTop
-    comp.style.left = currX - startX + startLeft
+    comp.style.top = Number(currY - startY + Number(startTop))
+    comp.style.left = Number(currX - startX + Number(startLeft))
   }
 
   const up = () => {
