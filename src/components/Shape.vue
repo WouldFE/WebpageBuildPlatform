@@ -1,10 +1,14 @@
 <template>
   <div
+    v-if="!isLayout"
     class="shape"
     @click.stop="handleClick"
     @mousedown.stop="handleMouseDownOnShape"
     @contextmenu.prevent.stop="handleContextmenu"
   >
+    <slot />
+  </div>
+  <div v-else class="shape" @click.stop="handleClick">
     <slot />
   </div>
 </template>
@@ -19,10 +23,11 @@ const {
   contextmenu
 } = storeToRefs(canvasStore)
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   element: component
   index: number
-}>()
+  isLayout: boolean
+}>(), { isLayout: false })
 
 const handleClick = () => {
   canvasStore.$patch({
@@ -43,8 +48,8 @@ const handleMouseDownOnShape = (e: MouseEvent) => {
   const move = (e: MouseEvent) => {
     const currY = e.clientY
     const currX = e.clientX
-    comp.style.top = Number(currY - startY + Number(startTop))
-    comp.style.left = Number(currX - startX + Number(startLeft))
+    comp.style.top = Number(currY - startY + Number(startTop)) < 0 ? 0 : Number(currY - startY + Number(startTop))
+    comp.style.left = Number(currX - startX + Number(startLeft)) < 0 ? 0 : Number(currX - startX + Number(startLeft))
   }
 
   const up = () => {
@@ -62,3 +67,8 @@ const handleContextmenu = (e: MouseEvent) => {
   contextmenu.value.show = true
 }
 </script>
+<style>
+.shape {
+  cursor: move;
+}
+</style>

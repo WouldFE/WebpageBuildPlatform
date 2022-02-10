@@ -38,8 +38,20 @@ const getComponentStyle = (style: compStyle) => {
     :style="style"
     @contextmenu.prevent.stop
   >
-    <Shape v-for="(item, index) in componentData" :key="item.id" :element="item" h-0 :index="index">
-      <component :is="item.component" :cstyle="item.style" :props="item.propValue" :style="{position: 'absolute' , ...getComponentStyle(item.style)}" />
+    <Shape
+      v-for="(item, index) in componentData"
+      :key="item.id"
+      :is-layout="false"
+      :element="item"
+      h-0
+      :index="index"
+    >
+      <component
+        :is="item.component"
+        :cstyle="item.style"
+        :props="item.propValue"
+        :style="{position: 'absolute' , ...getComponentStyle(item.style)}"
+      />
     </Shape>
     <Contextmenu />
   </div>

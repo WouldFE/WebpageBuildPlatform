@@ -40,11 +40,11 @@ const map = {
       </svg>
     </div>
     <el-card class="h-full rounded-0 b-t-0" header="组件设置" shadow="never">
-      <!--      <div> {{ currComp.propValue }}</div>-->
       <h5>组件属性</h5>
       <el-form label-position="top" @submit.prevent.stop>
         <div v-for="(val, key, index) in currComp.propValue" :key="index">
-          <el-form-item :label="val.display">
+          <el-form-item v-if="key === 'compData'" class="hidden" />
+          <el-form-item v-else :label="val.display">
             <el-input v-model="val.value" :type="key === 'text' ? 'textarea': ''" />
           </el-form-item>
         </div>

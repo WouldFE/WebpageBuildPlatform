@@ -97,6 +97,7 @@ const delComp = () => {
 
     *:hover {
       color: #40e;
+      cursor: pointer;
       font-weight: bold;
       background-color: #fee;
     }

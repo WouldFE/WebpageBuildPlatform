@@ -11,8 +11,11 @@ interface canvasStore {
   mode: 'edit' | 'view'
   // 组件数据
   data: component[]
+  // 当前聚焦组件
   currComp: component | undefined
+  // 当前聚焦组件 idx
   currCompIndex: number
+  // 右键菜单配置
   contextmenu: {
     show: boolean
     top: number
@@ -31,7 +34,7 @@ export const useCanvasStore = defineStore<string, canvasStore, {}, canvasAction>
         config: {
           width: 1280,
           height: 720,
-          bgColor: '#fc6'
+          bgColor: '#ffcc66'
         },
         mode: 'edit',
         data: [],

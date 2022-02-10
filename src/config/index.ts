@@ -3,8 +3,6 @@ import type { component } from '@/types'
 
 const generateId = () => Math.floor(Math.random() * 1e4)
 
-const debug = true
-
 export const componentList: component[] = [
   {
     id: generateId(),
@@ -33,15 +31,16 @@ export const componentList: component[] = [
     label: '布局',
     propValue: {
       row: { value: '2', display: '行数' },
-      col: { value: '2', display: '列数' }
+      col: { value: '2', display: '列数' },
+      compData: { value: [], display: '内含组件' }
     },
     style: {
-      width: 600,
-      height: 600,
+      width: '100%',
+      height: '100%',
       top: 0,
       left: 0,
       color: '#000',
-      backgroundColor: debug ? 'rgba(111,123,222,1)' : 'rgba(0,0,0,0)'
+      backgroundColor: 'rgba(0,0,0,0)'
     }
   }
 ]

@@ -14,8 +14,8 @@ export interface component {
 }
 
 export interface compStyle {
-  width: number
-  height: number
+  width: number | string
+  height: number | string
   top: number
   left: number
   color: string
@@ -30,5 +30,5 @@ export interface compStyle {
 
 export interface prop {
   display: string
-  value: string
+  value: string | component[]
 }

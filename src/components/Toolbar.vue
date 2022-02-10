@@ -3,15 +3,20 @@ import { ElMessage } from 'element-plus'
 import { useCanvasStore } from '@/store/canvas'
 
 enum menuID {
-  save,
+  saveAs,
   clear,
-  setting
+  setting,
+  view
 }
 
 const menuList = [
   {
-    id: menuID.save,
-    name: '保存'
+    id: menuID.view,
+    name: '预览'
+  },
+  {
+    id: menuID.saveAs,
+    name: '另存为'
   },
   {
     id: menuID.clear,
@@ -24,6 +29,7 @@ const menuList = [
 ]
 const settingModal = ref(false)
 const canvasStore = useCanvasStore()
+const { config } = storeToRefs(canvasStore)
 const operation = (id: menuID) => {
   if (id === menuID.clear) {
     canvasStore.$patch({
@@ -32,7 +38,7 @@ const operation = (id: menuID) => {
       currCompIndex: -1,
       contextmenu: { show: false }
     })
-  } else if (id === menuID.save) {
+  } else if (id === menuID.saveAs) {
     // Todo: save
     ElMessage.success('保存成功！')
   } else if (id === menuID.setting) {
