@@ -20,7 +20,8 @@ import type { component } from '@/types'
 const canvasStore = useCanvasStore()
 const {
   currComp,
-  contextmenu
+  contextmenu,
+  mode
 } = storeToRefs(canvasStore)
 
 const props = withDefaults(defineProps<{

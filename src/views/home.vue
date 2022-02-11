@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import AttrBar from '@/components/AttrBar.vue'
+import Preview from '@/components/Preview.vue'
+import Toolbar from '@/components/Toolbar.vue'
+import ComponentList from '@/components/ComponentList.vue'
+import Editor from '@/components/Editor.vue'
 import { generateComp } from '@/config'
 import { useCanvasStore } from '@/store/canvas'
 
@@ -51,6 +55,7 @@ const handleClick = () => {
         <AttrBar />
       </el-aside>
     </el-container>
+    <Preview :show="mode === 'view'" />
   </el-container>
 </template>
 

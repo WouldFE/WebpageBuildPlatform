@@ -1,9 +1,7 @@
 <script lang="ts" setup>
-import { ElMessage } from 'element-plus'
 import { useCanvasStore } from '@/store/canvas'
 
 enum menuID {
-  saveAs,
   clear,
   setting,
   view
@@ -13,10 +11,6 @@ const menuList = [
   {
     id: menuID.view,
     name: '预览'
-  },
-  {
-    id: menuID.saveAs,
-    name: '另存为'
   },
   {
     id: menuID.clear,
@@ -29,7 +23,7 @@ const menuList = [
 ]
 const settingModal = ref(false)
 const canvasStore = useCanvasStore()
-const { config } = storeToRefs(canvasStore)
+const { config, mode } = storeToRefs(canvasStore)
 const operation = (id: menuID) => {
   if (id === menuID.clear) {
     canvasStore.$patch({
@@ -38,18 +32,17 @@ const operation = (id: menuID) => {
       currCompIndex: -1,
       contextmenu: { show: false }
     })
-  } else if (id === menuID.saveAs) {
-    // Todo: save
-    ElMessage.success('保存成功！')
   } else if (id === menuID.setting) {
     settingModal.value = true
+  } else {
+    mode.value = 'view'
   }
 }
 </script>
 
 <template>
   <div border="~ transparent b-#ccc">
-    <div flex justify-between items-center px-6 py-2>
+    <div class="flex justify-between items-center px-6 py-2">
       <div>
         <el-button v-for="menuItem in menuList" :key="menuItem.id" mr-5 @click="operation(menuItem.id)">
           {{ menuItem.name }}
@@ -58,9 +51,7 @@ const operation = (id: menuID) => {
       <div>
         <a
           title="项目地址"
-          cursor-pointer
-          text-black-500
-          class="hover:text-[#409EFF]"
+          class="hover:text-[#409EFF] cursor-pointer text-black-500"
           href="https://github.com/WouldFe/client"
           target="_blank"
         >
@@ -76,14 +67,14 @@ const operation = (id: menuID) => {
     <template #default>
       <el-form label-position="top" label-width="120px">
         <el-form-item label="画布尺寸">
-          <div w-full inline-flex justify-between>
+          <div class="w-full inline-flex justify-between">
             <el-input v-model="config.width" class="w-45%" placeholder="宽度" />
             <span>&times;</span>
             <el-input v-model="config.height" class="w-45%" placeholder="高度" />
           </div>
         </el-form-item>
         <el-form-item label="画布背景色">
-          <div w-full inline-flex justify-between>
+          <div class="w-full inline-flex justify-between">
             <el-input v-model="config.bgColor" class="w-45%" />
             <el-color-picker v-model="config.bgColor" />
             <div class="w-45%" />

@@ -24,9 +24,10 @@ declare module 'vue' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
-    ElSelectV2: typeof import('element-plus/es')['ElSelectV2']
+    Preview: typeof import('./components/Preview.vue')['default']
     Shape: typeof import('./components/Shape.vue')['default']
     Toolbar: typeof import('./components/Toolbar.vue')['default']
+    Wrapper: typeof import('./components/Wrapper.vue')['default']
   }
 }
 

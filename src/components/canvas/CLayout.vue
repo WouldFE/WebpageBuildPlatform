@@ -1,7 +1,7 @@
 <template>
   <div class="c-layout" @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
     <div v-for="i in getRow" :key="i" class="row-layout">
-      <div v-for="j in getCol" :key="j" class="col-layout">
+      <div v-for="j in getCol" :key="j" class="col-layout" :style="mode === 'edit' ?{border: '2px dashed #4400ee'}:''">
         <div class="sub-comp">
           <Shape
             v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
@@ -27,6 +27,7 @@
 <script lang="ts" setup>
 import Shape from '@/components/Shape.vue'
 import { generateComp } from '@/config'
+import { useCanvasStore } from '@/store/canvas'
 import type { compStyle, prop } from '@/types'
 
 type propsType = {
@@ -39,6 +40,8 @@ type propsType = {
 }
 
 const props = defineProps<propsType>()
+
+const { mode } = storeToRefs(useCanvasStore())
 
 const getRow = computed(() => Number(props.props.row.value))
 const getCol = computed(() => Number(props.props.col.value))
@@ -80,7 +83,6 @@ function getComponentStyle(style: compStyle) {
 
     .col-layout {
       width: 100%;
-      border: 2px dashed #4400ee;
 
       .sub-comp {
         position: relative;

@@ -31,10 +31,8 @@ const getComponentStyle = (style: compStyle) => {
 </script>
 
 <template>
-  <!-- todo event name -->
   <div
-    relative
-    overflow-hidden
+    class="relative overflow-hidden"
     :style="style"
     @contextmenu.prevent.stop
   >
