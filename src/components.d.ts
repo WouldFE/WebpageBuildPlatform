@@ -5,7 +5,9 @@
 declare module 'vue' {
   export interface GlobalComponents {
     AttrBar: typeof import('./components/AttrBar.vue')['default']
+    CLayout: typeof import('./components/canvas/CLayout.vue')['default']
     ComponentList: typeof import('./components/ComponentList.vue')['default']
+    Contextmenu: typeof import('./components/Contextmenu.vue')['default']
     CText: typeof import('./components/canvas/CText.vue')['default']
     Editor: typeof import('./components/Editor.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
@@ -20,8 +22,12 @@ declare module 'vue' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    Preview: typeof import('./components/Preview.vue')['default']
     Shape: typeof import('./components/Shape.vue')['default']
     Toolbar: typeof import('./components/Toolbar.vue')['default']
+    Wrapper: typeof import('./components/Wrapper.vue')['default']
   }
 }
 

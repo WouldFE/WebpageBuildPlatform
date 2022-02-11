@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useCanvasStore } from '@/store/canvas'
 
-const show = ref(true)
 const { currComp } = storeToRefs(useCanvasStore())
 const keydownEsc = new Event('escDown', { bubbles: false })
 
@@ -10,6 +9,24 @@ useEventListener(document, 'keydown', (e) => {
   e.stopPropagation()
   if (e.key === 'Escape') document.dispatchEvent(keydownEsc)
 })
+
+const styleKeys = computed(() => {
+  return currComp.value ? Object.keys(currComp.value.style) : []
+})
+
+const map = {
+  left: 'x 坐标',
+  top: 'y 坐标',
+  height: '高',
+  width: '宽',
+  color: '颜色',
+  backgroundColor: '背景色',
+  fontSize: '字体大小',
+  fontWeight: '字体粗细',
+  lineHeight: '行高',
+  letterSpacing: '字间距',
+  textAlign: '对齐方式'
+}
 </script>
 
 <template>
@@ -23,19 +40,37 @@ useEventListener(document, 'keydown', (e) => {
       </svg>
     </div>
     <el-card class="h-full rounded-0 b-t-0" header="组件设置" shadow="never">
-      <!--      <div> {{ currComp.propValue }}</div>-->
       <h5>组件属性</h5>
-      <div v-for="(val, key, index) in currComp.propValue" :key="index">
-        <el-form label-position="top" @submit.prevent.stop>
-          <el-form-item :label="val.display">
+      <el-form label-position="top" @submit.prevent.stop>
+        <div v-for="(val, key, index) in currComp.propValue" :key="index">
+          <el-form-item v-if="key === 'compData'" class="hidden" />
+          <el-form-item v-else :label="val.display">
             <el-input v-model="val.value" :type="key === 'text' ? 'textarea': ''" />
           </el-form-item>
-        </el-form>
-      </div>
+        </div>
+      </el-form>
       <el-divider />
       <h5>组件样式</h5>
-      <!-- todo -->
-      <div> {{ currComp.style }}</div>
+      <el-form label-position="top" @submit.prevent.stop>
+        <div v-for="(key, index) in styleKeys" :key="index">
+          <el-form-item v-if="key === 'textAlign'" :label="map[key]">
+            <el-select v-model="currComp.style[key]" class="w-full">
+              <el-option label="居左对齐" value="left" />
+              <el-option label="居中对齐" value="center" />
+              <el-option label="居右对齐" value="right" />
+            </el-select>
+          </el-form-item>
+          <el-form-item v-else-if="key === 'color' || key === 'backgroundColor'" :label="map[key]">
+            <div w-full inline-flex justify-between>
+              <el-input v-model="currComp.style[key]" class="w-80%" />
+              <el-color-picker v-model="currComp.style[key]" show-alpha="show-alpha" />
+            </div>
+          </el-form-item>
+          <el-form-item v-else :label="map[key]">
+            <el-input v-model="currComp.style[key]" />
+          </el-form-item>
+        </div>
+      </el-form>
     </el-card>
   </div>
 </template>
