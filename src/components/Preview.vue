@@ -15,10 +15,12 @@
       </div>
     </div>
   </el-dialog>
+  <el-dialog :model-value="showCodeModal" :append-to-body="true">
+    {{ code }}
+  </el-dialog>
 </template>
 
 <script setup lang="ts">
-import { ElMessageBox } from 'element-plus'
 import Wrapper from '@/components/Wrapper.vue'
 import { useCanvasStore } from '@/store/canvas'
 
@@ -32,12 +34,9 @@ const style = computed(() => ({
   backgroundColor: `${config.value.bgColor}`
 }))
 
-const showCode = () => {
-  const canvas = document.getElementById('canvas-preview')
-  ElMessageBox({
-    message: canvas?.innerHTML
-  })
-}
+const showCodeModal = ref(false)
+const code = ref('')
+const showCode = () => {}
 </script>
 
 <style scoped>

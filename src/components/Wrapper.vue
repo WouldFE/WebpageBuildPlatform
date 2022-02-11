@@ -4,7 +4,6 @@
     :cstyle="element.style"
     :props="element.propValue"
     :style="{position: 'absolute', ...getComponentStyle(element.style)}"
-    @click.prevent.stop
   />
 </template>
 
