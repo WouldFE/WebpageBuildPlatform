@@ -38,7 +38,7 @@ const getComponentStyle = (style: compStyle) => {
     overflow-hidden
     resize="none"
     type="textarea"
-    :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none', borderRadius: '0', ...getComponentStyle(props.cstyle)}"
+    :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none', padding: 0, borderRadius: '0', ...getComponentStyle(props.cstyle)}"
   />
   <div v-else :style="getComponentStyle(props.cstyle)">
     <div v-for="(t, index) in props.props.text.value.split('\n')" :key="index" :style="{...getComponentStyle(props.cstyle), height: `${props.cstyle.lineHeight}px`}">
