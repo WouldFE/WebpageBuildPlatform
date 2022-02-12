@@ -1,5 +1,5 @@
 <template>
-  <div v-if="mode === 'edit'">
+  <div v-if="props.mode === 'edit'">
     <el-image
       :src="props.props.src.value"
       :fit="props.props.fit.value"
@@ -37,7 +37,6 @@
 
 <script setup lang="ts">
 import { ElMessageBox } from 'element-plus'
-import { useCanvasStore } from '@/store/canvas'
 import type { compStyle, prop } from '@/types'
 
 type propsType = {
@@ -46,11 +45,10 @@ type propsType = {
     preview: prop
     fit: prop
   }
+  mode: 'edit' | 'view'
   cstyle: compStyle
 }
 const props = defineProps<propsType>()
-
-const { mode } = storeToRefs(useCanvasStore())
 
 const imgerr = () => {
   ElMessageBox({

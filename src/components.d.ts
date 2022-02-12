@@ -32,7 +32,6 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTag: typeof import('element-plus/es')['ElTag']
     EventsManage: typeof import('./components/EventsManage.vue')['default']
-    Preview: typeof import('./components/Preview.vue')['default']
     Shape: typeof import('./components/Shape.vue')['default']
     Toolbar: typeof import('./components/Toolbar.vue')['default']
     Wrapper: typeof import('./components/Wrapper.vue')['default']

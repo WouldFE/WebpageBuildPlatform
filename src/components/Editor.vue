@@ -48,6 +48,7 @@ const getComponentStyle = (style: compStyle) => {
         :is="item.component"
         :cstyle="item.style"
         :props="item.propValue"
+        :mode="'edit'"
         :style="{position: 'absolute' , ...getComponentStyle(item.style)}"
       />
     </Shape>

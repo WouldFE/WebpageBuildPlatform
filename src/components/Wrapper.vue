@@ -1,9 +1,10 @@
 <template>
-  <div :id="`${element.component}${element.id}`">
+  <div @click="handleClick">
     <component
       :is="element.component"
       :cstyle="element.style"
       :props="element.propValue"
+      :mode="'view'"
       :style="{position: 'absolute', ...getComponentStyle(element.style)}"
     />
   </div>
@@ -22,11 +23,19 @@ const getComponentStyle = (style: compStyle) => {
   return result
 }
 
-Object.keys(props.element.events as {}).forEach((value) => {
-  const event = (props.element.events as any)[value]
-  useEventListener(document.getElementById(`${props.element.component}${props.element.id}`), value, event.event(event.param))
+// Object.keys(props.element.events === undefined ? {} : props.element.events).forEach((value) => {
+//   const event = (props.element.events as any)[value]
+//   useEventListener(this, value, event.event(event.param))
+// })
+
+const handleClick = () => {
+  const events
+      = props.element.events === undefined
+        ? {}
+        : props.element.events
+  events.click.event(events.click.param)
 }
-)
+
 </script>
 
 <style scoped>

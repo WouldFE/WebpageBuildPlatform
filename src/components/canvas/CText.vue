@@ -6,6 +6,7 @@ type propsType = {
   props: {
     text: prop
   }
+  mode: 'edit' | 'view'
   cstyle: compStyle
 }
 
@@ -33,7 +34,7 @@ const getComponentStyle = (style: compStyle) => {
 
 <template>
   <ElInput
-    v-if="mode === 'edit'"
+    v-if="props.mode === 'edit'"
     v-model="text"
     overflow-hidden
     resize="none"

@@ -10,7 +10,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/preview',
     name: 'preview',
-    component: () => import('@v/Preview.vue')
+    component: () => import('@v/preview.vue')
   }
 ]
 
