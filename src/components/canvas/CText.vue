@@ -42,7 +42,7 @@ const getComponentStyle = (style: compStyle) => {
     :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none', padding: 0, borderRadius: '0', ...getComponentStyle(props.cstyle)}"
   />
   <div v-else :style="getComponentStyle(props.cstyle)">
-    <div v-if="props.props.text.value.split('\n').length <= 1" :style="{backgroundColor: props.cstyle.backgroundColor}">
+    <div v-if="props.props.text.value.split('\n').length <= 1" :style="getComponentStyle(props.cstyle)">
       {{ props.props.text.value }}
     </div>
     <div v-else>

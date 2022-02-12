@@ -39,7 +39,7 @@ const handleClick = () => {
 </script>
 
 <template>
-  <el-container class="root">
+  <el-container>
     <el-header class="!h-fit !p-0">
       <Toolbar />
     </el-header>
@@ -56,10 +56,3 @@ const handleClick = () => {
     </el-container>
   </el-container>
 </template>
-
-<style scoped>
-.root * {
-  padding: 0;
-  margin: 0;
-}
-</style>
