@@ -44,7 +44,7 @@ const handleClick = () => {
       <Toolbar />
     </el-header>
     <el-container :style="containerStyle">
-      <el-aside width="200px">
+      <el-aside>
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden>

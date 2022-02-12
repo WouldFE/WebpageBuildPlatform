@@ -1,16 +1,24 @@
 <template>
-  <el-button @click="goBack">
-    返回编辑
-  </el-button>
-  <div id="canvas-preview" class="flex justify-center">
-    <div :style="{ position: 'relative', ...style}">
-      <Wrapper
-        v-for="(item, index) in data"
-        :key="index"
-        :element="item"
-      />
-    </div>
-  </div>
+  <el-container>
+    <el-header class="!h-fit !p-0">
+      <div border="~ transparent b-#ccc" class=" px-6 py-2">
+        <el-button @click="goBack">
+          返回编辑
+        </el-button>
+      </div>
+    </el-header>
+    <el-main>
+      <div id="canvas-preview" class="flex justify-center overflow-hidden">
+        <div :style="{ position: 'relative', ...style}">
+          <Wrapper
+            v-for="(item, index) in data"
+            :key="index"
+            :element="item"
+          />
+        </div>
+      </div>
+    </el-main>
+  </el-container>
 </template>
 
 <script setup lang="ts">
