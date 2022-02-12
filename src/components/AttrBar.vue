@@ -44,6 +44,23 @@ const map = {
       <el-form label-position="top" @submit.prevent.stop>
         <div v-for="(val, key, index) in currComp.propValue" :key="index">
           <el-form-item v-if="key === 'compData'" class="hidden" />
+          <el-form-item v-else-if="key === 'preview'" :label="val.display">
+            <el-radio v-model="val.value" label="true">
+              是
+            </el-radio>
+            <el-radio v-model="val.value" label="false">
+              否
+            </el-radio>
+          </el-form-item>
+          <el-form-item v-else-if="key === 'fit'" :label="val.display">
+            <el-select v-model="val.value" class="w-full">
+              <el-option label="fill" value="fill" />
+              <el-option label="contain" value="contain" />
+              <el-option label="cover" value="cover" />
+              <el-option label="none" value="none" />
+              <el-option label="scale-down" value="scale-down" />
+            </el-select>
+          </el-form-item>
           <el-form-item v-else :label="val.display">
             <el-input v-model="val.value" :type="key === 'text' ? 'textarea': ''" />
           </el-form-item>

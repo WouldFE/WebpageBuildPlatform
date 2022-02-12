@@ -11,6 +11,7 @@ export interface component {
   }
   icon: string
   style: compStyle
+  events?: {}
 }
 
 export interface compStyle {
