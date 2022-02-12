@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useCanvasStore } from '@/store/canvas'
+import EventsManage from './EventsManage.vue'
 
 const { currComp } = storeToRefs(useCanvasStore())
 const keydownEsc = new Event('escDown', { bubbles: false })
@@ -108,6 +109,7 @@ const sizeOptions = ['large', 'default', 'small']
       <el-divider />
       <section v-if="currComp.events !== undefined">
         <h5>事件管理</h5>
+        <EventsManage />
       </section>
     </el-card>
   </div>
@@ -124,5 +126,8 @@ const sizeOptions = ['large', 'default', 'small']
     top: 14px;
     cursor: pointer;
   }
+}
+section h5 {
+  margin-bottom: 4px;
 }
 </style>

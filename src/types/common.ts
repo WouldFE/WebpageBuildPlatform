@@ -11,7 +11,9 @@ export interface component {
   }
   icon: string
   style: compStyle
-  events?: {}
+  events?: {
+    [key: string]: any
+  }
 }
 
 export interface compStyle {

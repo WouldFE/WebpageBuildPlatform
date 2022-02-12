@@ -1,15 +1,17 @@
 <template>
-  <component
-    :is="element.component"
-    :cstyle="element.style"
-    :props="element.propValue"
-    :style="{position: 'absolute', ...getComponentStyle(element.style)}"
-  />
+  <div :id="`${element.component}${element.id}`">
+    <component
+      :is="element.component"
+      :cstyle="element.style"
+      :props="element.propValue"
+      :style="{position: 'absolute', ...getComponentStyle(element.style)}"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { compStyle, component } from '@/types'
-defineProps<{element: component}>()
+const props = defineProps<{element: component}>()
 
 const getComponentStyle = (style: compStyle) => {
   const result: {[key: string]: string} = {}
@@ -19,6 +21,12 @@ const getComponentStyle = (style: compStyle) => {
   })
   return result
 }
+
+Object.keys(props.element.events as {}).forEach((value) => {
+  const event = (props.element.events as any)[value]
+  useEventListener(document.getElementById(`${props.element.component}${props.element.id}`), value, event.event(event.param))
+}
+)
 </script>
 
 <style scoped>
