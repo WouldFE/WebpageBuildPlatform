@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import AttrBar from '@/components/AttrBar.vue'
-import Preview from '@/components/Preview.vue'
 import Toolbar from '@/components/Toolbar.vue'
 import ComponentList from '@/components/ComponentList.vue'
 import Editor from '@/components/Editor.vue'
@@ -45,7 +44,7 @@ const handleClick = () => {
       <Toolbar />
     </el-header>
     <el-container :style="containerStyle">
-      <el-aside width="200px">
+      <el-aside>
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden>
@@ -55,7 +54,6 @@ const handleClick = () => {
         <AttrBar />
       </el-aside>
     </el-container>
-    <Preview :show="mode === 'view'" />
   </el-container>
 </template>
 

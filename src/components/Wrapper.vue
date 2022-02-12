@@ -1,15 +1,18 @@
 <template>
-  <component
-    :is="element.component"
-    :cstyle="element.style"
-    :props="element.propValue"
-    :style="{position: 'absolute', ...getComponentStyle(element.style)}"
-  />
+  <div @click="handleClick">
+    <component
+      :is="element.component"
+      :cstyle="element.style"
+      :props="element.propValue"
+      :mode="'view'"
+      :style="{position: 'absolute', ...getComponentStyle(element.style)}"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { compStyle, component } from '@/types'
-defineProps<{element: component}>()
+const props = defineProps<{element: component}>()
 
 const getComponentStyle = (style: compStyle) => {
   const result: {[key: string]: string} = {}
@@ -19,6 +22,20 @@ const getComponentStyle = (style: compStyle) => {
   })
   return result
 }
+
+// Object.keys(props.element.events === undefined ? {} : props.element.events).forEach((value) => {
+//   const event = (props.element.events as any)[value]
+//   useEventListener(this, value, event.event(event.param))
+// })
+
+const handleClick = () => {
+  const events
+      = props.element.events === undefined
+        ? {}
+        : props.element.events
+  events.click.event(events.click.param)
+}
+
 </script>
 
 <style scoped>

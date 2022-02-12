@@ -20,7 +20,7 @@ const handleDragStart = (e: DragEvent) => {
       :body-style="{ display: 'flex', flexDirection: 'column', alignItems: 'center'}"
       :data-index="index"
       :draggable="true"
-      class="w-45% text-center"
+      class="w-60% text-center mt-4px"
     >
       <span class="iconify text-xl" :data-icon="`carbon:${item.icon}`" />
       <span>{{ item.label }}</span>

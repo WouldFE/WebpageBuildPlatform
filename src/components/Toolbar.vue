@@ -21,6 +21,7 @@ const menuList = [
     name: '画布设置'
   }
 ]
+const router = useRouter()
 const settingModal = ref(false)
 const canvasStore = useCanvasStore()
 const { config, mode } = storeToRefs(canvasStore)
@@ -35,7 +36,9 @@ const operation = (id: menuID) => {
   } else if (id === menuID.setting) {
     settingModal.value = true
   } else {
-    mode.value = 'view'
+    router.push({
+      path: '/preview'
+    })
   }
 }
 </script>

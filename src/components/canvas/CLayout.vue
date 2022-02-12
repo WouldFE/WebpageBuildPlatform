@@ -1,23 +1,32 @@
 <template>
   <div class="c-layout" @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
     <div v-for="i in getRow" :key="i" class="row-layout">
-      <div v-for="j in getCol" :key="j" class="col-layout" :style="mode === 'edit' ?{border: '2px dashed #4400ee'}:''">
+      <div v-for="j in getCol" :key="j" class="col-layout" :style="props.mode === 'edit' ?{border: '2px dashed #4400ee'}:''">
         <div class="sub-comp">
-          <Shape
-            v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
-            :element="getComp((i - 1) * getCol + (j - 1))"
-            :index="(i - 1) * getCol + (j - 1)"
-            :is-layout="true"
-            class="shape"
-            style="width: 100%"
-          >
-            <component
-              :is="getComp((i - 1) * getCol + (j - 1)).component"
-              :cstyle="getComp((i - 1) * getCol + (j - 1)).style"
-              :props="getComp((i - 1) * getCol + (j - 1)).propValue"
-              :style="{position: 'absolute' , ...getComponentStyle(getComp((i - 1) * getCol + (j - 1)).style)}"
+          <div v-if="props.mode === 'edit'">
+            <Shape
+              v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
+              :element="getComp((i - 1) * getCol + (j - 1))"
+              :index="(i - 1) * getCol + (j - 1)"
+              :is-layout="true"
+              class="shape"
+              style="width: 100%"
+            >
+              <component
+                :is="getComp((i - 1) * getCol + (j - 1)).component"
+                :cstyle="getComp((i - 1) * getCol + (j - 1)).style"
+                :props="getComp((i - 1) * getCol + (j - 1)).propValue"
+                :mode="props.mode"
+                :style="{position: 'absolute' , ...getComponentStyle(getComp((i - 1) * getCol + (j - 1)).style)}"
+              />
+            </Shape>
+          </div>
+          <div v-else>
+            <Wrapper
+              v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
+              :element="getComp((i - 1) * getCol + (j - 1))"
             />
-          </Shape>
+          </div>
         </div>
       </div>
     </div>
@@ -26,9 +35,9 @@
 
 <script lang="ts" setup>
 import Shape from '@/components/Shape.vue'
+import Wrapper from '@/components/Wrapper.vue'
 import { generateComp } from '@/config'
-import { useCanvasStore } from '@/store/canvas'
-import type { compStyle, prop } from '@/types'
+import type { compStyle, component, prop } from '@/types'
 
 type propsType = {
   props: {
@@ -36,16 +45,18 @@ type propsType = {
     row: prop
     compData: prop
   }
+  mode: 'edit' | 'view'
   cstyle: compStyle
 }
 
 const props = defineProps<propsType>()
 
-const { mode } = storeToRefs(useCanvasStore())
-
 const getRow = computed(() => Number(props.props.row.value))
 const getCol = computed(() => Number(props.props.col.value))
-const getComp = (idx: number) => props.props.compData.value[idx]
+const getComp = (idx: number) => props.props.compData.value[idx] as component
+const getCompS = (i: number, j: number) => {
+  return props.props.compData.value[(i - 1) * Number(props.props.col.value) + (j - 1)]
+}
 
 const handleDrop = (e: DragEvent) => {
   const component = generateComp(Number(e.dataTransfer?.getData('index')));

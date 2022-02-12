@@ -6,6 +6,7 @@ type propsType = {
   props: {
     text: prop
   }
+  mode: 'edit' | 'view'
   cstyle: compStyle
 }
 
@@ -33,16 +34,21 @@ const getComponentStyle = (style: compStyle) => {
 
 <template>
   <ElInput
-    v-if="mode === 'edit'"
+    v-if="props.mode === 'edit'"
     v-model="text"
     overflow-hidden
     resize="none"
     type="textarea"
-    :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none', borderRadius: '0', ...getComponentStyle(props.cstyle)}"
+    :input-style="{backgroundColor: 'rgba(0,0,0,0)', border: 'none', padding: 0, borderRadius: '0', ...getComponentStyle(props.cstyle)}"
   />
   <div v-else :style="getComponentStyle(props.cstyle)">
-    <div v-for="(t, index) in props.props.text.value.split('\n')" :key="index" :style="{...getComponentStyle(props.cstyle), height: `${props.cstyle.lineHeight}px`}">
-      {{ t }}
+    <div v-if="props.props.text.value.split('\n').length <= 1" :style="{backgroundColor: props.cstyle.backgroundColor}">
+      {{ props.props.text.value }}
+    </div>
+    <div v-else>
+      <div v-for="(t, index) in props.props.text.value.split('\n')" :key="index" :style="{...getComponentStyle(props.cstyle), height: `${props.cstyle.lineHeight}px`, backgroundColor: ''}">
+        {{ t }}
+      </div>
     </div>
   </div>
 </template>

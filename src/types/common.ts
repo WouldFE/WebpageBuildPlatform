@@ -11,15 +11,18 @@ export interface component {
   }
   icon: string
   style: compStyle
+  events?: {
+    [key: string]: any
+  }
 }
 
 export interface compStyle {
-  width: number | string
-  height: number | string
+  width?: number | string
+  height?: number | string
   top: number
   left: number
-  color: string
-  backgroundColor: string
+  color?: string
+  backgroundColor?: string
   fontSize?: number
   fontWeight?: number
   lineHeight?: number
