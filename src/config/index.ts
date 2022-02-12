@@ -44,6 +44,22 @@ export const componentList: component[] = [
     }
   },
   {
+    id: generateId(),
+    component: 'CButton',
+    label: '按钮',
+    propValue: {
+      msg: { display: '文字', value: '按钮' },
+      type: { display: '类型', value: 'primary' },
+      size: { display: '尺寸', value: 'default' }
+    },
+    icon: 'cursor-1',
+    style: {
+      top: 0,
+      left: 0
+    },
+    events: {}
+  },
+  {
     component: 'CLayout',
     icon: 'data-vis-4',
     id: generateId(),
