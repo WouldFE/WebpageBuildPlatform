@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="contextmenu.show"
-    :style="{zIndex: '10000', position: 'absolute', top: `${contextmenu.top}px`, left: `${contextmenu.left}px`}"
+    :style="{zIndex: 10000, position: 'absolute', top: `${contextmenu.top}px`, left: `${contextmenu.left}px`}"
     class="context-menu"
     @blur="handleBlur"
   >
