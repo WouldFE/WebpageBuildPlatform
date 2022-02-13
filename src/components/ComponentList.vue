@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { componentList } from '@/config'
 
 const handleDragStart = (e: DragEvent) => {
@@ -17,10 +17,12 @@ const handleDragStart = (e: DragEvent) => {
     <ElCard
       v-for="(item, index) in componentList"
       :key="index"
+      :body-style="{ display: 'flex', flexDirection: 'column', alignItems: 'center'}"
       :data-index="index"
       :draggable="true"
-      class="w-45% text-center"
+      class="w-60% text-center mt-4px"
     >
+      <span class="iconify text-xl" :data-icon="`carbon:${item.icon}`" />
       <span>{{ item.label }}</span>
     </ElCard>
   </div>

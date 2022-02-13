@@ -11,23 +11,27 @@ export interface component {
   }
   icon: string
   style: compStyle
+  events?: {
+    [key: string]: any
+  }
 }
 
 export interface compStyle {
-  width: number
-  height: number
+  width?: number | string
+  height?: number | string
   top: number
   left: number
-  fontSize: number
-  fontWeight: number
-  lineHeight: number
-  letterSpacing: number
-  textAlign: string
-  color: string
-  [key: string]: string | number
+  color?: string
+  backgroundColor?: string
+  fontSize?: number
+  fontWeight?: number
+  lineHeight?: number
+  letterSpacing?: number
+  textAlign?: string
+  [key: string]: string | number | undefined
 }
 
 export interface prop {
   display: string
-  value: string
+  value: string | component[]
 }

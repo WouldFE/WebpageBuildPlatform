@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import AttrBar from '@/components/AttrBar.vue'
+import Toolbar from '@/components/Toolbar.vue'
+import ComponentList from '@/components/ComponentList.vue'
+import Editor from '@/components/Editor.vue'
 import { generateComp } from '@/config'
 import { useCanvasStore } from '@/store/canvas'
 
@@ -24,19 +27,28 @@ const containerStyle = computed(() => ({
   height: `${document.documentElement.clientHeight - 50}px`
 }))
 
+const handleClick = () => {
+  canvasStore.contextmenu.show = false
+  canvasStore.$patch({
+    contextmenu: { show: false },
+    currComp: undefined,
+    currCompIndex: -1
+  })
+}
+
 </script>
 
 <template>
-  <el-container class="root">
+  <el-container>
     <el-header class="!h-fit !p-0">
       <Toolbar />
     </el-header>
     <el-container :style="containerStyle">
-      <el-aside width="200px">
+      <el-aside>
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden>
-        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" />
+        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" @click.stop.prevent="handleClick" />
       </el-main>
       <el-aside v-if="currComp !== undefined">
         <AttrBar />
@@ -44,10 +56,3 @@ const containerStyle = computed(() => ({
     </el-container>
   </el-container>
 </template>
-
-<style scoped>
-.root * {
-  padding: 0;
-  margin: 0;
-}
-</style>
