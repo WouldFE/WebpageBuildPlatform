@@ -1,4 +1,4 @@
-<h1 align="center">Client</h1>
+<h1 align="center">WebpageBuildPlatform</h1>
 
 <p align="center">这是我们前端的项目，采用 
 <a href="https://vitejs.dev/"><img width="15" src="https://vitejs.dev/logo.svg" /></a>搭建</p>
