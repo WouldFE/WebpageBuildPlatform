@@ -15,6 +15,7 @@
     </el-image>
   </div>
   <div v-else>
+    <!-- todo   -->
     <div v-if="props.props.preview.value === 'true'">
       <el-image
         :src="props.props.src.value"
