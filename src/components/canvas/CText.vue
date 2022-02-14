@@ -17,6 +17,7 @@ const text = computed({
   get: () => {
     return props.props.text.value
   },
+  // todo
   set: (val) => {
     props.props.text.value = val
   }
