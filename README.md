@@ -24,7 +24,7 @@
 
 点击顶部工具栏上预览按钮，即可跳转至预览页面查看页面效果。
 
-<!-- 演示动图占位 -->
+![页面效果](https://user-images.githubusercontent.com/36471625/153819045-b5366fab-5ea8-4ef4-94ba-3426f794ad65.gif)
 
 项目目前已实现一下功能：
 
@@ -41,6 +41,15 @@
 
 项目中了通过拖拽生成组件的核心功能是利用`draggable`相关的`WebAPI`以及`Vue`动态组件功能实现的。
 
+项目中自定义了 4 个可编辑组件，分别有：文本、图片、布局、按钮。
+
+![文本](https://user-images.githubusercontent.com/36471625/153820425-3efb1994-d855-4bf2-9778-624467c75af1.gif)
+
+![图片](https://user-images.githubusercontent.com/36471625/153820711-8aa0855b-13b2-4b85-9b7d-e038e52d6cf9.gif)
+
+![布局](https://user-images.githubusercontent.com/36471625/153821653-7f2e0a4c-d2d5-4933-8572-02144688a1ed.gif)
+
+![按钮](https://user-images.githubusercontent.com/36471625/153821912-dfcb6436-5c1d-48f0-9f10-19ab56312484.gif)
 
 
 # Features
