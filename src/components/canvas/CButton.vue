@@ -1,26 +1,21 @@
 <template>
   <div
     class="flex justify-center align-center"
-    :style="{width: `${props.cstyle.width}px`, height: `${props.cstyle.height}px` , backgroundColor: `${props.cstyle.backgroundColor}`, color: `${props.cstyle.color}`}"
+    :style="{width: `${elem.style.width}px`, height: `${elem.style.height}px` , backgroundColor: `${elem.style.backgroundColor}`, color: `${elem.style.color}`}"
   >
-    <el-button :type="props.props.type.value" :size="props.props.size.value">
-      {{ props.props.msg.value }}
+    <el-button :type="elem.propValue.type.value" :size="elem.propValue.size.value" @click="mode === 'view' ? elem.events['click'].event(elem.events.click.param) : () => {}">
+      {{ elem.propValue.msg.value }}
     </el-button>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { compStyle, prop } from '@/types'
+import type { CButton } from '@/types'
 
-type propsType = {
-  props: {
-    type: prop
-    msg: prop
-    size: prop
-  }
-  cstyle: compStyle
-}
-const props = defineProps<propsType>()
+defineProps<{
+  elem: CButton
+  mode: 'edit' | 'view'
+}>()
 
 </script>
 

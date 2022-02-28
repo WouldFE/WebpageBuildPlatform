@@ -1,10 +1,10 @@
 <template>
-  <div v-if="props.mode === 'edit'">
+  <div v-if="mode === 'edit'">
     <el-image
-      :src="props.props.src.value"
-      :fit="props.props.fit.value"
+      :src="elem.propValue.src.value"
+      :fit="elem.propValue.fit.value"
       :draggable="false"
-      :style="{width: `${props.cstyle.width}px`, height: `${props.cstyle.height}px`}"
+      :style="{width: `${elem.style.width}px`, height: `${elem.style.height}px`}"
       @error="imgerr"
     >
       <template #placeholder>
@@ -15,41 +15,24 @@
     </el-image>
   </div>
   <div v-else>
-    <!-- todo   -->
-    <div v-if="props.props.preview.value === 'true'">
-      <el-image
-        :src="props.props.src.value"
-        :fit="props.props.fit.value"
-        :draggable="false"
-        :style="{width: `${props.cstyle.width}px`, height: `${props.cstyle.height}px`}"
-        :preview-src-list="[props.props.src.value]"
-      />
-    </div>
-    <div v-else>
-      <el-image
-        :src="props.props.src.value"
-        :fit="props.props.fit.value"
-        :style="{width: `${props.cstyle.width}px`, height: `${props.cstyle.height}px`}"
-        :draggable="false"
-      />
-    </div>
+    <el-image
+      :src="elem.propValue.src.value"
+      :fit="elem.propValue.fit.value"
+      :draggable="false"
+      :style="{width: `${elem.style.width}px`, height: `${elem.style.height}px`}"
+      :preview-src-list="elem.propValue.preview.value === 'true' ? [elem.propValue.src.value] : []"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ElMessageBox } from 'element-plus'
-import type { compStyle, prop } from '@/types'
+import type { CPicture } from '@/types'
 
-type propsType = {
-  props: {
-    src: prop
-    preview: prop
-    fit: prop
-  }
+defineProps<{
+  elem: CPicture
   mode: 'edit' | 'view'
-  cstyle: compStyle
-}
-const props = defineProps<propsType>()
+}>()
 
 const imgerr = () => {
   ElMessageBox({

@@ -2,7 +2,7 @@
 import Contextmenu from '@/components/Contextmenu.vue'
 import Shape from '@/components/Shape.vue'
 import { useCanvasStore } from '@/store/canvas'
-import type { compStyle } from '@/types'
+import type { commonStyle } from '@/types'
 
 withDefaults(defineProps<{
   isEdit?: boolean
@@ -20,7 +20,7 @@ const style = computed(() => ({
   backgroundColor: `${config.value.bgColor}`
 }))
 
-const getComponentStyle = (style: compStyle) => {
+const getComponentStyle = (style: commonStyle) => {
   const result: {[key: string]: string} = {}
   Object.keys(style).forEach((value) => {
     if (!isNaN(Number(style[value]))) result[value] = `${style[value]}px`
@@ -46,8 +46,7 @@ const getComponentStyle = (style: compStyle) => {
     >
       <component
         :is="item.component"
-        :cstyle="item.style"
-        :props="item.propValue"
+        :elem="item"
         :mode="'edit'"
         :style="{position: 'absolute' , ...getComponentStyle(item.style)}"
       />

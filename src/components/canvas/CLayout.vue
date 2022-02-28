@@ -14,8 +14,7 @@
             >
               <component
                 :is="getComp((i - 1) * getCol + (j - 1)).component"
-                :cstyle="getComp((i - 1) * getCol + (j - 1)).style"
-                :props="getComp((i - 1) * getCol + (j - 1)).propValue"
+                :elem="getComp((i - 1) * getCol + (j - 1))"
                 :mode="props.mode"
                 :style="{position: 'absolute' , ...getComponentStyle(getComp((i - 1) * getCol + (j - 1)).style)}"
               />
@@ -37,37 +36,29 @@
 import Shape from '@/components/Shape.vue'
 import Wrapper from '@/components/Wrapper.vue'
 import { generateComp } from '@/config'
-import type { compStyle, component, prop } from '@/types'
+import type { CLayout, commonStyle } from '@/types'
 
-type propsType = {
-  props: {
-    col: prop
-    row: prop
-    compData: prop
-  }
+const props = defineProps<{
+  elem: CLayout
   mode: 'edit' | 'view'
-  cstyle: compStyle
-}
+}>()
 
-const props = defineProps<propsType>()
+const { row, col, subComp } = toRefs(props.elem.propValue)
 
-const getRow = computed(() => Number(props.props.row.value))
-const getCol = computed(() => Number(props.props.col.value))
-const getComp = (idx: number) => props.props.compData.value[idx] as component
-const getCompS = (i: number, j: number) => {
-  return props.props.compData.value[(i - 1) * Number(props.props.col.value) + (j - 1)]
-}
+const getRow = computed(() => Number(row.value.value))
+const getCol = computed(() => Number(col.value.value))
+const getComp = (idx: number) => subComp.value.value[idx]
 
 const handleDrop = (e: DragEvent) => {
-  const component = generateComp(Number(e.dataTransfer?.getData('index')));
-  (props.props.compData.value as any[]).push(component)
+  const component = generateComp(Number(e.dataTransfer?.getData('index')))
+  subComp.value.value.push(component)
 }
 
 const handleDragOver = (e: DragEvent) => {
   (e as any).dataTransfer.dropEffect = 'copy'
 }
 
-function getComponentStyle(style: compStyle) {
+function getComponentStyle(style: commonStyle) {
   const result: { [key: string]: string } = {}
   Object.keys(style).forEach((value) => {
     if (!isNaN(Number(style[value])))

@@ -14,17 +14,21 @@
     "type": "git",
     "url": "git+https://github.com/WouldFe/WebpageBuildPlatform.git"
   },
-  "keywords": ["lowcode", ""],
+  "keywords": [
+    "lowcode"
+  ],
   "author": "chris-zhu <https://github.com/chris-zhu>",
-  "contributors": [{
-    "name": "Liumingxun",
-    "email": "liumingxun@yeah.net",
-    "url": "https://github.com/Liumingxun"
-  },{
-    "name": "chris-zhu",
-    "email": "1633711653@qq.com",
-    "url": "https://github.com/chris-zhu"
-  }
+  "contributors": [
+    {
+      "name": "Liumingxun",
+      "email": "liumingxun@yeah.net",
+      "url": "https://github.com/Liumingxun"
+    },
+    {
+      "name": "chris-zhu",
+      "email": "1633711653@qq.com",
+      "url": "https://github.com/chris-zhu"
+    }
   ],
   "license": "ISC",
   "bugs": {

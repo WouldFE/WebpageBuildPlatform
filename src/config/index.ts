@@ -1,9 +1,9 @@
 import { deepClone } from '@chris-zhu/utils'
-import type { component } from '@/types'
+import type { CButton, component } from '@/types'
 
 const generateId = () => Math.floor(Math.random() * 1e4)
 
-export const componentList: component[] = [
+export const componentList: Array<component> = [
   {
     id: generateId(),
     component: 'CText',
@@ -67,7 +67,7 @@ export const componentList: component[] = [
     propValue: {
       row: { value: '2', display: '行数' },
       col: { value: '2', display: '列数' },
-      compData: { value: [], display: '内含组件' }
+      subComp: { value: [], display: '内含组件' }
     },
     style: {
       width: '100%',
