@@ -1,21 +1,22 @@
 <template>
   <div
-    v-if="!isLayout"
     class="shape"
     @click.stop="handleClick"
     @mousedown.stop="handleMouseDownOnShape"
     @contextmenu.prevent.stop="handleContextmenu"
   >
-    <slot />
-  </div>
-  <div v-else class="shape" @click.stop="handleClick">
-    <slot />
+    <component
+      :is="element.component"
+      :elem="element"
+      :mode="mode"
+      :style="{position: 'absolute' , ...getComponentStyle(element.style)}"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useCanvasStore } from '@/store/canvas'
-import type { component } from '@/types'
+import type { commonStyle, component } from '@/types'
 
 const canvasStore = useCanvasStore()
 const {
@@ -24,18 +25,17 @@ const {
   mode
 } = storeToRefs(canvasStore)
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
   element: component
   index: number
-  isLayout: boolean
-}>(), { isLayout: false })
+}>()
 
 const handleClick = () => {
   canvasStore.$patch({
     currComp: props.element,
-    currCompIndex: props.index
+    currCompIndex: props.index,
+    contextmenu: { show: false }
   })
-  contextmenu.value.show = false
 }
 
 const handleMouseDownOnShape = (e: MouseEvent) => {
@@ -45,6 +45,8 @@ const handleMouseDownOnShape = (e: MouseEvent) => {
   const startX = e.clientX
   const startTop = comp.style.top
   const startLeft = comp.style.left
+  // const width = comp.style.width
+  // const height = comp.style.height
 
   const move = (e: MouseEvent) => {
     const currY = e.clientY
@@ -60,6 +62,15 @@ const handleMouseDownOnShape = (e: MouseEvent) => {
 
   useEventListener(document, 'mousemove', move)
   useEventListener(document, 'mouseup', up)
+}
+
+const getComponentStyle = (style: commonStyle) => {
+  const result: {[key: string]: string} = {}
+  Object.keys(style).forEach((value) => {
+    if (!isNaN(Number(style[value]))) result[value] = `${style[value]}px`
+    else result[value] = style[value] as string
+  })
+  return result
 }
 
 const handleContextmenu = (e: MouseEvent) => {

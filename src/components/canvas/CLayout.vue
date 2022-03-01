@@ -1,31 +1,15 @@
 <template>
   <div class="c-layout" @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
     <div v-for="i in getRow" :key="i" class="row-layout">
-      <div v-for="j in getCol" :key="j" class="col-layout" :style="props.mode === 'edit' ?{border: '2px dashed #4400ee'}:''">
+      <div v-for="j in getCol" :key="j" class="col-layout" :style="mode === 'edit' ? {outline: '1px dashed #4400ee'} : {}">
         <div class="sub-comp">
-          <div v-if="props.mode === 'edit'">
-            <Shape
-              v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
-              :element="getComp((i - 1) * getCol + (j - 1))"
-              :index="(i - 1) * getCol + (j - 1)"
-              :is-layout="true"
-              class="shape"
-              style="width: 100%"
-            >
-              <component
-                :is="getComp((i - 1) * getCol + (j - 1)).component"
-                :elem="getComp((i - 1) * getCol + (j - 1))"
-                :mode="props.mode"
-                :style="{position: 'absolute' , ...getComponentStyle(getComp((i - 1) * getCol + (j - 1)).style)}"
-              />
-            </Shape>
-          </div>
-          <div v-else>
-            <Wrapper
-              v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
-              :element="getComp((i - 1) * getCol + (j - 1))"
-            />
-          </div>
+          <Shape
+            v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
+            :element="getComp((i - 1) * getCol + (j - 1))"
+            :index="(i - 1) * getCol + (j - 1)"
+            class="shape"
+            style="width: 100%"
+          />
         </div>
       </div>
     </div>
@@ -34,14 +18,16 @@
 
 <script lang="ts" setup>
 import Shape from '@/components/Shape.vue'
-import Wrapper from '@/components/Wrapper.vue'
 import { generateComp } from '@/config'
+import { useCanvasStore } from '@/store/canvas'
 import type { CLayout, commonStyle } from '@/types'
 
 const props = defineProps<{
   elem: CLayout
-  mode: 'edit' | 'view'
 }>()
+
+const canvasStore = useCanvasStore()
+const { mode } = storeToRefs(canvasStore)
 
 const { row, col, subComp } = toRefs(props.elem.propValue)
 

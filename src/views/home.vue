@@ -28,13 +28,16 @@ const containerStyle = computed(() => ({
 }))
 
 const handleClick = () => {
-  canvasStore.contextmenu.show = false
   canvasStore.$patch({
     contextmenu: { show: false },
     currComp: undefined,
     currCompIndex: -1
   })
 }
+
+onMounted(() => {
+  mode.value = 'edit'
+})
 
 </script>
 
@@ -48,7 +51,7 @@ const handleClick = () => {
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden>
-        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" @click.stop.prevent="handleClick" />
+        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" @click.prevent.stop="handleClick" />
       </el-main>
       <el-aside v-if="currComp !== undefined">
         <AttrBar />

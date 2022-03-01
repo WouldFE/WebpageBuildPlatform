@@ -12,8 +12,9 @@
         <div :style="{ position: 'relative', ...style}">
           <Wrapper
             v-for="(item, index) in data"
-            :key="index"
+            :key="item.id"
             :element="item"
+            :index="index"
           />
         </div>
       </div>
@@ -34,6 +35,10 @@ const style = computed(() => ({
   backgroundColor: `${config.value.bgColor}`
 }))
 const goBack = () => router.back()
+
+onMounted(() => {
+  mode.value = 'view'
+})
 
 </script>
 
