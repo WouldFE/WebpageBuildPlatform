@@ -10,17 +10,15 @@ const canvasStore = useCanvasStore()
 const { mode, currComp } = storeToRefs(canvasStore)
 
 function handleDrop(e: DragEvent) {
-  const component = generateComp(Number(e.dataTransfer?.getData('index')))
+  const idx = Number(e.dataTransfer?.getData('index'))
+  if (idx < 0) return
+  const component = generateComp(idx)
   component.style = {
     ...component.style,
     top: e.offsetY,
     left: e.offsetX
   }
   canvasStore.addComponent(component)
-}
-
-function handleDragOver(e: DragEvent) {
-  (e as any).dataTransfer.dropEffect = 'copy'
 }
 
 const containerStyle = computed(() => ({
@@ -51,7 +49,7 @@ onMounted(() => {
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden>
-        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" @click.prevent.stop="handleClick" />
+        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="" @click.prevent.stop="handleClick" />
       </el-main>
       <el-aside v-if="currComp !== undefined">
         <AttrBar />

@@ -11,8 +11,7 @@
 
 <script setup lang="ts">
 import type { commonStyle, component } from '@/types'
-const props = defineProps<{element: component}>()
-
+defineProps<{ element: component }>()
 const getComponentStyle = (style: commonStyle) => {
   const result: {[key: string]: string} = {}
   Object.keys(style).forEach((value) => {
@@ -21,19 +20,6 @@ const getComponentStyle = (style: commonStyle) => {
   })
   return result
 }
-
-// Object.keys(props.element.events === undefined ? {} : props.element.events).forEach((value) => {
-//   const event = (props.element.events as any)[value]
-//   useEventListener(this, value, event.event(event.param))
-// })
-
-// const handleClick = () => {
-//   const events
-//       = props.element.events === undefined
-//         ? {}
-//         : props.element.events
-//   events.click.event(events.click.param)
-// }
 
 </script>
 

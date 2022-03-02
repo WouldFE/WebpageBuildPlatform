@@ -10,7 +10,6 @@ declare module 'vue' {
     ComponentList: typeof import('./components/ComponentList.vue')['default']
     Contextmenu: typeof import('./components/Contextmenu.vue')['default']
     CPicture: typeof import('./components/canvas/CPicture.vue')['default']
-    CText: typeof import('./components/canvas/CText.vue')['default']
     Editor: typeof import('./components/Editor.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -32,9 +31,9 @@ declare module 'vue' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTag: typeof import('element-plus/es')['ElTag']
     EventsManage: typeof import('./components/EventsManage.vue')['default']
-    Shape: typeof import('./components/Shape.vue')['default']
+    Shape: typeof import('./components/canvas/Shape.vue')['default']
     Toolbar: typeof import('./components/Toolbar.vue')['default']
-    Wrapper: typeof import('./components/Wrapper.vue')['default']
+    Wrapper: typeof import('./components/canvas/Wrapper.vue')['default']
   }
 }
 

@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import Wrapper from '@/components/Wrapper.vue'
+import Wrapper from '@/components/canvas/Wrapper.vue'
 import { useCanvasStore } from '@/store/canvas'
 
 const { data, config, mode } = storeToRefs(useCanvasStore())

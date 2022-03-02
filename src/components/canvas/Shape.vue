@@ -45,8 +45,6 @@ const handleMouseDownOnShape = (e: MouseEvent) => {
   const startX = e.clientX
   const startTop = comp.style.top
   const startLeft = comp.style.left
-  // const width = comp.style.width
-  // const height = comp.style.height
 
   const move = (e: MouseEvent) => {
     const currY = e.clientY

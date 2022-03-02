@@ -3,7 +3,8 @@
     <div v-for="i in getRow" :key="i" class="row-layout">
       <div v-for="j in getCol" :key="j" class="col-layout" :style="mode === 'edit' ? {outline: '1px dashed #4400ee'} : {}">
         <div class="sub-comp">
-          <Shape
+          <component
+            :is="getMode"
             v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
             :element="getComp((i - 1) * getCol + (j - 1))"
             :index="(i - 1) * getCol + (j - 1)"
@@ -17,7 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-import Shape from '@/components/Shape.vue'
 import { generateComp } from '@/config'
 import { useCanvasStore } from '@/store/canvas'
 import type { CLayout, commonStyle } from '@/types'
@@ -31,6 +31,7 @@ const { mode } = storeToRefs(canvasStore)
 
 const { row, col, subComp } = toRefs(props.elem.propValue)
 
+const getMode = computed(() => mode.value === 'edit' ? 'Shape' : 'Wrapper')
 const getRow = computed(() => Number(row.value.value))
 const getCol = computed(() => Number(col.value.value))
 const getComp = (idx: number) => subComp.value.value[idx]

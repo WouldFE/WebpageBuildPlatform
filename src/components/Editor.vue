@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Contextmenu from '@/components/Contextmenu.vue'
-import Shape from '@/components/Shape.vue'
+import Shape from '@/components/canvas/Shape.vue'
 import { useCanvasStore } from '@/store/canvas'
 
 withDefaults(defineProps<{
