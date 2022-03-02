@@ -20,7 +20,7 @@
   <el-button v-else type="primary" style="width: 100%; padding: 20px 0; font-size: 15px; font-weight: 500; letter-spacing: 4px" @click="openDrawer">
     添加事件
   </el-button>
-  <el-drawer :model-value="drawer" direction="ltr" @close="drawer = false">
+  <el-drawer :model-value="drawer" direction="ltr" :destroy-on-close="true" @close="drawer = false">
     <el-form label-position="top" @submit.prevent.stop>
       <el-form-item label="添加的事件类型">
         <el-cascader
@@ -44,6 +44,7 @@
 </template>
 
 <script lang="ts" setup>
+import { deepClone2 } from '@chris-zhu/utils'
 import { useCanvasStore } from '@/store/canvas'
 import { eventsList } from '@/events'
 
@@ -64,6 +65,7 @@ const eventOptions = [
       },
       {
         value: 'redirection',
+        disabled: true,
         label: '跳转'
       }
     ]
@@ -88,7 +90,7 @@ const confirmEvent = () => {
   const eventType = eventChoice.value[0]
   const event = eventChoice.value[1]
   if (currComp.value?.events !== undefined)
-    currComp.value.events[eventType] = { event: eventsList[event], param: eventParam.value, type: event }
+    currComp.value.events[eventType] = { event: deepClone2(eventsList[event]), param: eventParam.value, type: event }
   drawer.value = false
 }
 

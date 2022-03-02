@@ -48,7 +48,8 @@ const sizeOptions = ['large', 'default', 'small']
         <h5>组件属性</h5>
         <el-form label-position="top" @submit.prevent.stop>
           <div v-for="(val, key, index) in currComp.propValue" :key="index">
-            <el-form-item v-if="key === 'compData'" class="hidden" />
+            <!--   @todo: 需要重构 每个单独写个组件 defineComponent() 然后使用 map 映射      -->
+            <el-form-item v-if="key === 'subComp'" class="hidden" />
             <el-form-item v-else-if="key === 'preview'" :label="val.display">
               <el-radio v-model="val.value" label="true">
                 是

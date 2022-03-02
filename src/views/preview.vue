@@ -12,8 +12,9 @@
         <div :style="{ position: 'relative', ...style}">
           <Wrapper
             v-for="(item, index) in data"
-            :key="index"
+            :key="item.id"
             :element="item"
+            :index="index"
           />
         </div>
       </div>
@@ -22,11 +23,17 @@
 </template>
 
 <script setup lang="ts">
-import Wrapper from '@/components/Wrapper.vue'
+import Wrapper from '@/components/canvas/Wrapper.vue'
 import { useCanvasStore } from '@/store/canvas'
+import { usePreviewStore } from '@/store/preview'
+import type { component } from '@/types'
 
-const { data, config, mode } = storeToRefs(useCanvasStore())
+const { config, mode } = storeToRefs(useCanvasStore())
+const { previewData } = storeToRefs(usePreviewStore())
+
+const data = ref<component[]>([])
 const router = useRouter()
+const route = useRoute()
 
 const style = computed(() => ({
   width: `${config.value.width}px`,
@@ -34,6 +41,15 @@ const style = computed(() => ({
   backgroundColor: `${config.value.bgColor}`
 }))
 const goBack = () => router.back()
+
+onMounted(() => {
+  mode.value = 'view'
+  data.value = previewData.value[typeof route.name === 'string' ? route.name : '']
+})
+
+onUpdated(() => {
+  data.value = previewData.value[typeof route.name === 'string' ? route.name : '']
+})
 
 </script>
 

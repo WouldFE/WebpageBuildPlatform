@@ -1,32 +1,16 @@
 <template>
   <div class="c-layout" @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver">
     <div v-for="i in getRow" :key="i" class="row-layout">
-      <div v-for="j in getCol" :key="j" class="col-layout" :style="props.mode === 'edit' ?{border: '2px dashed #4400ee'}:''">
+      <div v-for="j in getCol" :key="j" class="col-layout" :style="mode === 'edit' ? {outline: '1px dashed #4400ee'} : {}">
         <div class="sub-comp">
-          <div v-if="props.mode === 'edit'">
-            <Shape
-              v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
-              :element="getComp((i - 1) * getCol + (j - 1))"
-              :index="(i - 1) * getCol + (j - 1)"
-              :is-layout="true"
-              class="shape"
-              style="width: 100%"
-            >
-              <component
-                :is="getComp((i - 1) * getCol + (j - 1)).component"
-                :cstyle="getComp((i - 1) * getCol + (j - 1)).style"
-                :props="getComp((i - 1) * getCol + (j - 1)).propValue"
-                :mode="props.mode"
-                :style="{position: 'absolute' , ...getComponentStyle(getComp((i - 1) * getCol + (j - 1)).style)}"
-              />
-            </Shape>
-          </div>
-          <div v-else>
-            <Wrapper
-              v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
-              :element="getComp((i - 1) * getCol + (j - 1))"
-            />
-          </div>
+          <component
+            :is="getMode"
+            v-if="getComp((i - 1) * getCol + (j - 1)) !== undefined"
+            :element="getComp((i - 1) * getCol + (j - 1))"
+            :index="(i - 1) * getCol + (j - 1)"
+            class="shape"
+            style="width: 100%"
+          />
         </div>
       </div>
     </div>
@@ -34,40 +18,34 @@
 </template>
 
 <script lang="ts" setup>
-import Shape from '@/components/Shape.vue'
-import Wrapper from '@/components/Wrapper.vue'
 import { generateComp } from '@/config'
-import type { compStyle, component, prop } from '@/types'
+import { useCanvasStore } from '@/store/canvas'
+import type { CLayout, commonStyle } from '@/types'
 
-type propsType = {
-  props: {
-    col: prop
-    row: prop
-    compData: prop
-  }
-  mode: 'edit' | 'view'
-  cstyle: compStyle
-}
+const props = defineProps<{
+  elem: CLayout
+}>()
 
-const props = defineProps<propsType>()
+const canvasStore = useCanvasStore()
+const { mode } = storeToRefs(canvasStore)
 
-const getRow = computed(() => Number(props.props.row.value))
-const getCol = computed(() => Number(props.props.col.value))
-const getComp = (idx: number) => props.props.compData.value[idx] as component
-const getCompS = (i: number, j: number) => {
-  return props.props.compData.value[(i - 1) * Number(props.props.col.value) + (j - 1)]
-}
+const { row, col, subComp } = toRefs(props.elem.propValue)
+
+const getMode = computed(() => mode.value === 'edit' ? 'Shape' : 'Wrapper')
+const getRow = computed(() => Number(row.value.value))
+const getCol = computed(() => Number(col.value.value))
+const getComp = (idx: number) => subComp.value.value[idx]
 
 const handleDrop = (e: DragEvent) => {
-  const component = generateComp(Number(e.dataTransfer?.getData('index')));
-  (props.props.compData.value as any[]).push(component)
+  const component = generateComp(Number(e.dataTransfer?.getData('index')))
+  subComp.value.value.push(component)
 }
 
 const handleDragOver = (e: DragEvent) => {
   (e as any).dataTransfer.dropEffect = 'copy'
 }
 
-function getComponentStyle(style: compStyle) {
+function getComponentStyle(style: commonStyle) {
   const result: { [key: string]: string } = {}
   Object.keys(style).forEach((value) => {
     if (!isNaN(Number(style[value])))

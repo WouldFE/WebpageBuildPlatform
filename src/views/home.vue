@@ -9,8 +9,12 @@ import { useCanvasStore } from '@/store/canvas'
 const canvasStore = useCanvasStore()
 const { mode, currComp } = storeToRefs(canvasStore)
 
+// @todo: drag & drop 需要重构 使用 @vueuse/gesture
+
 function handleDrop(e: DragEvent) {
-  const component = generateComp(Number(e.dataTransfer?.getData('index')))
+  const idx = Number(e.dataTransfer?.getData('index'))
+  if (idx < 0) return
+  const component = generateComp(idx)
   component.style = {
     ...component.style,
     top: e.offsetY,
@@ -19,22 +23,21 @@ function handleDrop(e: DragEvent) {
   canvasStore.addComponent(component)
 }
 
-function handleDragOver(e: DragEvent) {
-  (e as any).dataTransfer.dropEffect = 'copy'
-}
-
 const containerStyle = computed(() => ({
   height: `${document.documentElement.clientHeight - 50}px`
 }))
 
 const handleClick = () => {
-  canvasStore.contextmenu.show = false
   canvasStore.$patch({
     contextmenu: { show: false },
     currComp: undefined,
     currCompIndex: -1
   })
 }
+
+onMounted(() => {
+  mode.value = 'edit'
+})
 
 </script>
 
@@ -48,7 +51,7 @@ const handleClick = () => {
         <ComponentList />
       </el-aside>
       <el-main overflow-hidden>
-        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="handleDragOver" @click.stop.prevent="handleClick" />
+        <Editor @drop.stop.prevent="handleDrop" @dragover.prevent="" @click.prevent.stop="handleClick" />
       </el-main>
       <el-aside v-if="currComp !== undefined">
         <AttrBar />

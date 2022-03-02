@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.0.0",
+  "name": "webpage-build-platform",
+  "version": "1.0.0",
   "description": "client",
   "main": "dist/index.js",
   "scripts": {
@@ -12,20 +12,35 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WouldFe/client.git"
+    "url": "git+https://github.com/WouldFe/WebpageBuildPlatform.git"
   },
-  "keywords": [],
+  "keywords": [
+    "lowcode"
+  ],
   "author": "chris-zhu <https://github.com/chris-zhu>",
+  "contributors": [
+    {
+      "name": "Liumingxun",
+      "email": "liumingxun@yeah.net",
+      "url": "https://github.com/Liumingxun"
+    },
+    {
+      "name": "chris-zhu",
+      "email": "1633711653@qq.com",
+      "url": "https://github.com/chris-zhu"
+    }
+  ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/WouldFe/client/issues"
+    "url": "https://github.com/WouldFe/WebpageBuildPlatform/issues"
   },
-  "homepage": "https://github.com/WouldFe/client#readme",
+  "homepage": "https://github.com/WouldFe/WebpageBuildPlatform#readme",
   "dependencies": {
     "@chris-zhu/utils": "^0.0.7",
     "@vueuse/core": "^7.5.3",
     "element-plus": "^2.0.0",
     "pinia": "^2.0.9",
+    "pinia-plugin-persist": "^0.0.93",
     "vue": "^3.2.30",
     "vue-router": "^4.0.12"
   },
