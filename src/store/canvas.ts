@@ -26,6 +26,7 @@ interface canvasStore {
 interface canvasAction {
   addComponent: (component: component) => void
 }
+
 export const useCanvasStore = defineStore<string, canvasStore, {}, canvasAction>(
   'canvas',
   {
@@ -46,6 +47,9 @@ export const useCanvasStore = defineStore<string, canvasStore, {}, canvasAction>
           left: 0
         }
       }
+    },
+    persist: {
+      enabled: true
     },
     actions: {
       addComponent(component: component) {

@@ -9,6 +9,8 @@ import { useCanvasStore } from '@/store/canvas'
 const canvasStore = useCanvasStore()
 const { mode, currComp } = storeToRefs(canvasStore)
 
+// @todo: drag & drop 需要重构 使用 @vueuse/gesture
+
 function handleDrop(e: DragEvent) {
   const idx = Number(e.dataTransfer?.getData('index'))
   if (idx < 0) return
