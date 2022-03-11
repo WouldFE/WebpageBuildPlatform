@@ -40,7 +40,7 @@
     "@vueuse/core": "^7.5.3",
     "element-plus": "^2.0.0",
     "pinia": "^2.0.9",
-    "pinia-plugin-persist": "^0.0.93",
+    "pinia-plugin-persist": "^1.0.0",
     "vue": "^3.2.30",
     "vue-router": "^4.0.12"
   },
